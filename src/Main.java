@@ -35,7 +35,13 @@ public class Main {
                 System.out.print("What should we call it: ");
                 String accountName = input.nextLine();
                 Account.createAccount(accountName);
-
+                System.out.println("Please Choose An Option:");
+                System.out.println("[0] - Exit");
+                System.out.println("[1] - Create an Account");
+                System.out.println("[2] - Deposit Money");
+                System.out.println("[3] - Withdraw Money");
+                System.out.println("[4] - Transfer Money");
+                System.out.println("[5] - View Transaction History");
             }
         } while (input.nextInt() != 0);
 

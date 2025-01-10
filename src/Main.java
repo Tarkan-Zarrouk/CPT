@@ -6,6 +6,10 @@ public class Main {
         // default value of invalid option
         int choice = -1;
         Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
+        callMain(choice, bankAccount, input);
+    }
+
+    public static void callMain(int choice, Account bankAccount, Scanner input) {
         do {
             System.out.println("Hi, welcome to your personalized banking application");
             System.out.println("Please Choose an Option:");
@@ -30,7 +34,7 @@ public class Main {
             }
         } while (choice != 1);
     }
-
+    
     private static void accountSection(Scanner input, Account bankAccount) {
         String accountChoice;
         String accountName;

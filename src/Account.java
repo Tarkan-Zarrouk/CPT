@@ -4,9 +4,6 @@
  * Management class for Bank Account
  */
 
-import java.io.File;
-import java.io.IOException;
-
 /**
  * Bank account allowing you to perform actions such as Creating an account, deleting an account, adding money... etc
  */
@@ -14,27 +11,34 @@ public class Account {
     private String accountNumber;
     private String accountName;
     private double balance;
-    // 
-    public Account(String accountName, String accountNumber) {
+    // total constructor 
+    public Account(String accountName, String accountNumber, double balance) {
         this.accountNumber = accountNumber;
         this.accountName = accountName;
-        this.balance = 0.00;
+        this.balance = balance;
+    }
+    // partial constructor
+    public Account(String accountName, String accountNumber) {
+        this.accountName = accountName;
+        this.accountNumber = accountNumber;
+        this.balance = 0.0;
     }
     // File creation object... (W3 Schools - https://www.w3schools.com/java/java_files_create.asp);
-    public static String createAccount(String accountName) {
-        try {
-            String userName = accountName;
-            File fileName = new File("accounts/" + userName + ".txt");
-            fileName.getParentFile().mkdirs(); // Create directories if they do not exist
-            if(fileName.createNewFile()) {
-                return "Account Successfully Created";
-            }
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+    public static String createAccount(String accountName, String accountNumber, double balance) {
+        String accountContents = accountName + "\n" + accountNumber + "\n" + Double.toString(balance) + "\n";
+        Methods.createFile(accountContents);
+        Methods.writeToFile(accountName, accountContents);
         return "Successfully created " + accountName;
     }
-    
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    public String getAccountName() {
+        return accountName;
+    }
+    public double getBalance() {
+        return balance;
+    }
     @Override
     public String toString() {
         return "Account Number: " + accountNumber + "\n" + "Account Name: " + accountName + "\n" + "Balance: " + balance + "\n";

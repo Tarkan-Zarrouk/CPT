@@ -25,8 +25,5 @@ To install Bank Ease, follow these steps:
 Feel free to make a GitHub issue for Feature Requests / Bug Reports!
 
 # Credits
+- [GitHub Information for Issues, Features, General Questions, and Pull Requests](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates)
 
-(Sole purpose of this is for my teacher)
-[GitHub Feature Request template](https://github.com/grpc/grpc-java/blob/master/.github/ISSUE_TEMPLATE/feature_report.md)
-[GitHub Bug Report](https://github.com/grpc/grpc-java/blob/master/.github/ISSUE_TEMPLATE/bug_report.md)
-[GitHub General Question](https://github.com/grpc/grpc-java/blob/master/.github/ISSUE_TEMPLATE/ask_question.md)

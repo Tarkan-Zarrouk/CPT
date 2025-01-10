@@ -3,9 +3,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        int choice = -1; // initialize choice with an invalid value
-        Account bankAccount = new Account("Tarkan's Bank Account", "4506-1125-2455-9084");
-
+        // default value of invalid option
+        int choice = -1;
+        Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
         do {
             System.out.println("Hi, welcome to your personalized banking application");
             System.out.println("Please Choose an Option:");
@@ -23,7 +23,6 @@ public class Main {
                     accountSection(input, bankAccount);
                     break;
                 case 3:
-                    // Implement Chequeing section here
                     System.out.println("Chequeing section is under construction.");
                     break;
                 default:
@@ -34,6 +33,7 @@ public class Main {
 
     private static void accountSection(Scanner input, Account bankAccount) {
         String accountChoice;
+        String accountName;
         do {
             System.out.println("Welcome to Your Account Section!");
             System.out.println("Please Choose an Option Below:");
@@ -47,20 +47,21 @@ public class Main {
 
             switch (accountChoice) {
                 case "A":
-                    return; // Exit to the main menu
+                    return;
                 case "B":
-                    // Implement Add Account functionality
-                    System.out.println("Add Account functionality is under construction.");
-                    break;
+                System.out.println("Sure we can create the account for you!");
+                System.out.print("What would you like it to be called: ");
+                accountName = input.nextLine();
+                Account.createAccount(bankAccount.getAccountName(), bankAccount.getAccountNumber(), bankAccount.getBalance());
+                System.out.println("Successfully created account! 😊");
+                break;
                 case "C":
-                    // Implement Remove Account functionality
                     System.out.println("Remove Account functionality is under construction.");
                     break;
                 case "D":
                     System.out.println(bankAccount.toString());
                     break;
                 case "E":
-                    // Implement Transaction History functionality
                     System.out.println("Transaction History functionality is under construction.");
                     break;
                 default:

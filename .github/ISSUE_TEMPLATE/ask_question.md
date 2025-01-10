@@ -1,5 +1,5 @@
 ---
 name: Ask a question
-about: General question regarding BankRase
+about: General question regarding BankEase
 labels: question
 ---

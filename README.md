@@ -25,5 +25,6 @@ To install Bank Ease, follow these steps:
 Feel free to make a GitHub issue for Feature Requests / Bug Reports!
 
 # Credits
+- [Tarkan Zarrouk](https://www.github.com/tarkan-zarrouk)
 - [GitHub Information for Issues, Features, General Questions, and Pull Requests](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates)
 

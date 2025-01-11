@@ -24,10 +24,10 @@ public class Account {
         this.balance = 0.0;
     }
     // File creation object... (W3 Schools - https://www.w3schools.com/java/java_files_create.asp);
-    public static String createAccount(String accountName, String accountNumber, double balance) {
+    public static String createAccount(String directoryName, String accountName, String accountNumber, double balance) {
         String accountContents = accountName + "\n" + accountNumber + "\n" + Double.toString(balance) + "\n";
-        Methods.createFile(accountContents);
-        Methods.writeToFile(accountName, accountContents);
+        Methods.createFile(accountName,directoryName);
+        Methods.writeToFile(accountName, directoryName, accountContents);
         return "Successfully created " + accountName;
     }
     public String getAccountNumber() {

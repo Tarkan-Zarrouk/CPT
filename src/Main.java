@@ -8,7 +8,7 @@ public class Main {
         Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
         callMain(choice, bankAccount, input);
     }
-
+    
     public static void callMain(int choice, Account bankAccount, Scanner input) {
         do {
             System.out.println("Hi, welcome to your personalized banking application");
@@ -34,10 +34,10 @@ public class Main {
             }
         } while (choice != 1);
     }
-    
-    private static void accountSection(Scanner input, Account bankAccount) {
+    public static void accountSection(Scanner input, Account bankAccount) {
         String accountChoice;
         String accountName;
+        String folderName;
         do {
             System.out.println("Welcome to Your Account Section!");
             System.out.println("Please Choose an Option Below:");
@@ -53,21 +53,31 @@ public class Main {
                 case "A":
                     return;
                 case "B":
-                System.out.println("Sure we can create the account for you!");
-                System.out.print("What would you like it to be called: ");
-                accountName = input.nextLine();
-                Account.createAccount(bankAccount.getAccountName(), bankAccount.getAccountNumber(), bankAccount.getBalance());
-                System.out.println("Successfully created account! 😊");
+                    System.out.println("Sure we can create the account for you!");
+                    System.out.print("What would you like it to be called: ");
+                    accountName = input.nextLine();
+                    System.out.print("What would the folder name that this would be stored in called: ");
+                    folderName = input.nextLine();
+                    Account.createAccount(folderName, bankAccount.getAccountName(), bankAccount.getAccountNumber(), bankAccount.getBalance());
+                    System.out.println("Successfully created account! 😊");
                 break;
                 case "C":
-                    System.out.println("Remove Account functionality is under construction.");
-                    break;
+                    System.out.print("Are you sure? Confirm by typing yes if you'd like to go back (between Y or N): ");
+                    if(input.nextLine().toUpperCase() == "Y") {
+                        System.out.print("Awesome! What directory is the account stored in: ");
+                        folderName = input.nextLine();
+                        System.out.print("What is the account name: ");
+                        accountName = input.nextLine();
+                        Methods.deleteFile(accountName, folderName);
+                        System.out.println("Successfully deleted account! 😊");
+                    }
+                break;
                 case "D":
                     System.out.println(bankAccount.toString());
-                    break;
+                break;
                 case "E":
                     System.out.println("Transaction History functionality is under construction.");
-                    break;
+                break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }

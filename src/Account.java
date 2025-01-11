@@ -4,6 +4,8 @@
  * Management class for Bank Account
  */
 
+import java.util.ArrayList;
+
 /**
  * Bank account allowing you to perform actions such as Creating an account, deleting an account, adding money... etc
  */
@@ -11,6 +13,7 @@ public class Account {
     private String accountNumber;
     private String accountName;
     private double balance;
+    private ArrayList<String> accountTypes = new ArrayList<>();
     // total constructor 
     public Account(String accountName, String accountNumber, double balance) {
         this.accountNumber = accountNumber;
@@ -24,11 +27,13 @@ public class Account {
         this.balance = 0.0;
     }
     // File creation object... (W3 Schools - https://www.w3schools.com/java/java_files_create.asp);
-    public static String createAccount(String directoryName, String accountName, String accountNumber, double balance) {
-        String accountContents = accountName + "\n" + accountNumber + "\n" + Double.toString(balance) + "\n";
-        Methods.createFile(accountName,directoryName);
-        Methods.writeToFile(accountName, directoryName, accountContents);
-        return "Successfully created " + accountName;
+    public String createAccount(String directoryName, String accountName, String accountNumber, double balance) {
+        Account account = new Account(accountName, accountNumber, balance);
+        if (!Methods.fileExists(accountName, directoryName)) {
+            Methods.createFile(accountName, directoryName);
+        }
+        Methods.writeToFile(accountName, directoryName, account.toString());
+        return "Successfully created or updated " + accountName;
     }
     public String getAccountNumber() {
         return accountNumber;
@@ -38,6 +43,19 @@ public class Account {
     }
     public double getBalance() {
         return balance;
+    }
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+    public String addAccountTypes(String accountType) {
+        accountTypes.add(accountType);
+        return "Successfully added " + accountType + " to the list of account types.";
     }
     @Override
     public String toString() {

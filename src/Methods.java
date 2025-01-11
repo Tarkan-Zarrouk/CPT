@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Author: Tarkan Zarrouk
@@ -10,8 +11,13 @@ import java.io.IOException;
 /**
  * General purpose methods, callable throughout the files.
  */
-public class Methods {
-    // Uses FileWriter & File Objects to make writing to files easier 
+public class Methods { 
+    /**
+     * @param accountName - name of the account
+     * @param directoryName - name of the directory
+     * @return void
+     * Given the account name and the directoryName, we can create the base file for the account
+     */
     public static void createFile(String accountName, String directoryName) {
         try {
             // intialize new file object
@@ -28,22 +34,61 @@ public class Methods {
             System.err.println(e);
         }
     }
+    /**
+     * @param fileName - name of the file
+     * @param directoryName - name of the directory
+     * @param contents - contents of the file
+     * @return void
+     * Given the name of the file + the directory of the desired path with the contents, we can write to that path
+     */
     public static void writeToFile(String fileName, String directoryName, String contents) {
         try {
+            // initalize new file object
             FileWriter fileWriter = new FileWriter(directoryName + "/" + fileName + ".txt");
+            // write to file
             fileWriter.write(contents);
+            // close writer (similar to input)
             fileWriter.close();
         } catch (IOException e) {
             System.err.println(e);
         }
     }
+    /**
+     * @param directoryName - name of the directory
+     * @param fileName - name of the file
+     * @return void
+     * Given the directory path and file, we can simply delete the specified file (account)
+     */
     public static void deleteFile(String directoryName, String fileName) {
         // get path with object
         File file = new File(directoryName + "/" + fileName);
+        // delete file
         if(file.delete()) {
             System.out.println(fileName + " has been succesfully deleted! 😊");
         } else {
             System.out.println("File has NOT been deleted. Try retyping it as a correct path or remove the '/'!");
         }
+    }
+    /**
+     * @param fileName - name of the file
+     * @param directoryName - name of the directory
+     * @return boolean
+     * Simple check to see whether or not the file actually exists 
+     */
+    public static boolean fileExists(String fileName, String directoryName) {
+        File file = new File(directoryName + "/" + fileName + ".txt");
+        return file.exists();
+    }
+    /**
+     * @param arrayList - array list of strings
+     * @return String[]
+     * Given an array list of strings, we can convert and return the new string array
+     */
+    public static String[] convertArrayListToStringArray(ArrayList<String> arrayList) {
+        String[] stringArray = new String[arrayList.size()];
+        for(int i = 0; i < arrayList.size(); i++) {
+            stringArray[i] = arrayList.get(i);
+        }
+        return stringArray;
     }
 }

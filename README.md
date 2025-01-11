@@ -14,10 +14,12 @@ Bank Ease is a self-hosted banking application designed to simplify your financi
 
 To install Bank Ease, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/yourusername/bank-ease.git`
-2. Open in your IDE (Integrated Dev Environment) and make sure you have Java Installed
-3. Head over to the `Main`class
-4. Run method `main`
+1. Download the zip file from the [releases page](https:https://github.com/Tarkan-Zarrouk/CPT/releases)
+2. Extract the zip file to a folder of your choice
+3. Click and drag the folder into your IDE of choice
+4. Head over to the main class
+5. Change the contents within the Objects (INSERT OBJECTS HERE) to fit your info
+6. Click and run the main program
 5. Enjoy 😊
 
 ## Contact

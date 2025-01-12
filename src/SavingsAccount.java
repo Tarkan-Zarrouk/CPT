@@ -286,12 +286,12 @@ public class SavingsAccount extends Account {
     }
     
     /**
-     * Returns the corresponding {@link ChronoUnit} based on the interest period.
+     * Returns the corresponding date based on the interest period.
      * The interest period is expected to be one of the following:
-     * "BW" - Biweekly, returns {@link ChronoUnit#WEEKS}
-     * "M" - Monthly, returns {@link ChronoUnit#MONTHS}
-     * "Y" - Yearly, returns {@link ChronoUnit#YEARS}</li>
-     * "min" - Minute, returns {@link ChronoUnit#MINUTES}
+     * "BW" - Biweekly
+     * "M" - Monthly
+     * "Y" - Yearly
+     * "min" - Minute
      * @return the corresponding for the interest period
      * @throws IllegalArgumentException if the interest period is not recognized
      * source: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/temporal/ChronoUnit.html?is-external=true

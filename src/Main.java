@@ -12,7 +12,8 @@ public class Main {
         // default value of invalid option
         int choice = -1;
         Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
-        SavingsAccount savingsAccount = new SavingsAccount("Tarkan Zarrouk", "1234-1234-1234-1234", 5.0, 4.5, 10);
+        SavingsAccount savingsAccount = new SavingsAccount("Tarkan Zarrouk", "1234-1234-1234-1234", 5.0,4.5, "min");
+        savingsAccount.checkAndUpdateSavingsAccount();
         callMain(choice, bankAccount, savingsAccount, input);
     }
     /**
@@ -33,7 +34,6 @@ public class Main {
             System.out.println("[3] - Savings (This is where you can view your savings account information)");
             System.out.println("[4] - Chequeing (This is where you can view your chequeing account information)");
             System.out.println("[5] - Credit (This is where you can view your credit account information)");
-            System.out.println("[6] - Investment (This is where you can view your investment account information)");
             choice = Integer.parseInt(input.nextLine());
 
             switch (choice) {
@@ -89,28 +89,19 @@ public class Main {
                     String accountType = input.nextLine();
                     switch (accountType) {
                         case "1":
-                            System.out.print("What would you like it to be called: ");
-                            accountName = input.nextLine();
-                            System.out.print("What would the folder name that this would be stored in called: ");
-                            folderName = input.nextLine();
-                            savingsAccount.createSavingsAccount(folderName, savingsAccount.getAccountName(), savingsAccount.getAccountNumber(), savingsAccount.getBalance(), savingsAccount.getInterestRate(), savingsAccount.getInterestPeriod());
+                            System.out.println("Remember: The account name is fixed to your legal name with the directory of the type of account you're creating! 😊");
+                            savingsAccount.createSavingsAccount(savingsAccount.getAccountName(), savingsAccount.getAccountNumber(), savingsAccount.getBalance(), savingsAccount.getInterestRate(),savingsAccount.getInterestPeriod());
                             System.out.println("Successfully created account! 😊");
                         break;
                         case "2":
-                            System.out.print("What would you like it to be called: ");
-                            accountName = input.nextLine();
-                            System.out.print("What would the folder name that this would be stored in called: ");
-                            folderName = input.nextLine();
-                            ChequingAccount.createChequingAccount(folderName, accountName, bankAccount.getAccountNumber(), bankAccount.getBalance());
+                            System.out.println("Remember: The account name is fixed to your legal name with the directory of the type of account you're creating! 😊");
+                            ChequingAccount.createChequingAccount(bankAccount.getAccountName(), bankAccount.getAccountNumber(), bankAccount.getBalance());
                             // chequingAccount.createChequingAccount(folderName, accountName, chequingAccount.getAccountNumber(), chequingAccount.getBalance());
                             System.out.println("Successfully created account! 😊");
                             // System.out.println(account.getAccountTypes());
                         break;
                         case "3":
                             System.out.println("Credit section is under construction.");
-                        break;
-                        case "4":
-                            System.out.println("Investment section is under construction.");
                         break;
                         default:
                             System.out.println("Invalid choice. Please try again.");

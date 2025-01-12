@@ -23,12 +23,12 @@ public class ChequingAccount extends Account {
         this.balance = 0.0;
     }
 
-    public static String createChequingAccount(String directoryName, String accountName, String accountNumber, double balance) {
+    public static String createChequingAccount(String accountName, String accountNumber, double balance) {
         ChequingAccount chequingAccount = new ChequingAccount(accountNumber, balance);
-        if (!Methods.fileExists(accountName, directoryName)) {
-            Methods.createFile(accountName, directoryName);
+        if (!Methods.fileExists(accountName, "Chequing")) {
+            Methods.createFile(accountName, "Chequing");
         }
-        Methods.writeToFile(accountName, directoryName, chequingAccount.toString());
+        Methods.writeToFile(accountName, "Chequing", chequingAccount.toString());
         Account.addAccountTypes("Chequing");
         return "Successfully created or updated " + accountName;
     }

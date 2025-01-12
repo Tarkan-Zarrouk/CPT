@@ -29,4 +29,6 @@ Feel free to make a GitHub issue for Feature Requests / Bug Reports!
 # Credits
 - [Tarkan Zarrouk](https://www.github.com/tarkan-zarrouk)
 - [GitHub Information for Issues, Features, General Questions, and Pull Requests](https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/about-issue-and-pull-request-templates)
-
+- [Conventional GitHub Commit Standards](https://www.conventionalcommits.org/en/v1.0.0/)
+- [ChronoUnit Standard Of Measurement class](https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/temporal/ChronoUnit.html?is-external=true)
+- [W3 Schools for Java Tips and Tricks(ie: File Read & Write)](https://www.w3schools.com/)

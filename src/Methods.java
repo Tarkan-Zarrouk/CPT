@@ -1,7 +1,8 @@
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Author: Tarkan Zarrouk
@@ -79,16 +80,18 @@ public class Methods {
         File file = new File(directoryName + "/" + fileName + ".txt");
         return file.exists();
     }
-    /**
-     * @param arrayList - array list of strings
-     * @return String[]
-     * Given an array list of strings, we can convert and return the new string array
-     */
-    public static String[] convertArrayListToStringArray(ArrayList<String> arrayList) {
-        String[] stringArray = new String[arrayList.size()];
-        for(int i = 0; i < arrayList.size(); i++) {
-            stringArray[i] = arrayList.get(i);
+    public static String readInFile(String fileName, String directoryName) {
+        String data = "";
+        try {
+            File file = new File(directoryName + "/" + fileName + ".txt");
+            Scanner scanner = new Scanner(file);
+            while(scanner.hasNextLine()) {
+                data += scanner.nextLine();
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.err.println(e);
         }
-        return stringArray;
+        return data;
     }
 }

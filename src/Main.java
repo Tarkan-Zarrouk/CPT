@@ -12,7 +12,7 @@ public class Main {
         // default value of invalid option
         int choice = -1;
         Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
-        SavingsAccount savingsAccount = new SavingsAccount("Tarkan Zarrouk", "1234-1234-1234-1234", 5.0,4.5, "min");
+        SavingsAccount savingsAccount = new SavingsAccount("Tarkan Zarrouk", "1234-1234-1234-1234", 10,4.5, "min");
         savingsAccount.checkAndUpdateSavingsAccount();
         callMain(choice, bankAccount, savingsAccount, input);
     }
@@ -34,18 +34,19 @@ public class Main {
             System.out.println("[3] - Savings (This is where you can view your savings account information)");
             System.out.println("[4] - Chequeing (This is where you can view your chequeing account information)");
             System.out.println("[5] - Credit (This is where you can view your credit account information)");
-            choice = Integer.parseInt(input.nextLine());
+            choice = input.nextInt();
 
             switch (choice) {
                 case 1:
                     System.out.println("Successfully exited program");
                     System.exit(0);
-                    break;
+                break;
                 case 2:
                     accountSection(input, bankAccount, savingsAccount);
-                    break;
+                break;
                 case 3:
-                    break;
+                    savingsAccountSection(input, savingsAccount);
+                break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
@@ -123,11 +124,44 @@ public class Main {
                     // System.out.println(bankAccount.toString());
                 break;
                 case "E":
-                    System.out.println("Transaction History functionality is under construction.");
                 break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
         } while (!accountChoice.equals("A"));
+    }
+    /**
+     * Savings account section
+     * @param input - scanner
+     * @param savingsAccount - savings account
+     * 
+     * @return void
+     * Method that allows the user to navigate through the savings account section of the program and view their savings account information
+     */
+    public static void savingsAccountSection(Scanner input, SavingsAccount savingsAccount) {
+        String savingsChoice;
+        do {
+            System.out.println("Welcome to Your Savings Account Section!");
+            System.out.println("Please Choose an Option Below:");
+            System.out.println("[A] - Exit");
+            System.out.println("[B] - Deposit");
+            System.out.println("[C] - Withdraw");
+            System.out.println("[C] - History");
+            
+            savingsChoice = input.nextLine().toUpperCase();
+            
+            switch (savingsChoice) {
+                case "A":
+                return;
+                case "B":
+                System.out.println(savingsAccount.toString());
+                break;
+                case "C":
+                    // @TODO -  WORK ON MENU FOR SAVINGS
+                break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (!savingsChoice.equals("A"));
     }
 }

@@ -1,6 +1,5 @@
 // thank you for adding this java... ;3
 import java.io.*;
-import java.nio.file.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.*;
@@ -33,6 +32,9 @@ public class SavingsAccount extends Account {
      * The current date and time.
      */
     private LocalDateTime now;
+    /**
+     * The date and time when the interest was last added to the savings account.
+     */
     private LocalDateTime lastInterestAddedDate;
     /**
      * formatter for the account creation date.
@@ -178,6 +180,7 @@ public class SavingsAccount extends Account {
                 long period = 0;
                 switch (interestPeriod) {
                     case "BW":
+                        // Calculate the number of weeks till then... divide by 2 to convert to biweekly payments
                         period = ChronoUnit.WEEKS.between(lastInterestAddedDate, now) / 2;
                         break;
                     case "M":
@@ -208,13 +211,16 @@ public class SavingsAccount extends Account {
      * @return Message of successful with the account name 
      */
     public String createSavingsAccount(String accountName, String accountNumber, double balance, double interestRate, String interestPeriod) {
+        // initialize standard savings account object
         SavingsAccount savingsAccount = new SavingsAccount(accountName, accountNumber, balance, interestRate, interestPeriod);
         if (!Methods.fileExists(accountName, "Savings")) {
             Methods.createFile(accountName, "Savings");
         }
         now = LocalDateTime.now();
+        // contents of file
         String accountDetails = savingsAccount.toString() + "Account Created at: " + accountCreationDate.format(now) + "\n" + "last updated: " + accountCreationDate.format(now) + "\n";
         Methods.writeToFile(accountName, "Savings", accountDetails);
+        // add to the ArrayList<String>
         super.addAccountTypes("Savings");
         return "Successfully created or updated " + accountName;
     }
@@ -233,55 +239,57 @@ public class SavingsAccount extends Account {
      * 8. Writes the updated content back to the file.
      * 9. Updates the account details in the file.
      * @throws IOException if an I/O error occurs reading from the file or writing to it.
+     * This has been AI generated.. Simply the prompt was "Create a method such that I am able to within the textFile that is attatched the current to the last updated time and then if it exceeds the period, then we can add interest"
+     * Though it did not create this... it took about 3 (unfortunate) hours of debugging and modifying to get it to actually work... not a fan of it but if it works it works
      */
-
     public void checkAndUpdateSavingsAccount() {
         String accountName = getAccountName();
         String folderPath = "Savings/" + accountName + ".txt";
         File file = new File(folderPath);
-
         if (file.exists() && file.isFile()) {
-            String filePath = file.getPath();
-            try {
-                String content = new String(Files.readAllBytes(Paths.get(filePath)));
-                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
-                String[] parts = content.split("last updated: ");
-                if (parts.length >= 1) {
-                    LocalDateTime lastUpdated = LocalDateTime.parse(parts[1].trim(), formatter);
-                    LocalDateTime currentTime = LocalDateTime.now();
-                    long periodsPassed = 0;
-                    switch (interestPeriod) {
-                        case "BW":
-                            periodsPassed = ChronoUnit.WEEKS.between(lastUpdated, currentTime) / 2;
-                            break;
-                        case "M":
-                            periodsPassed = ChronoUnit.MONTHS.between(lastUpdated, currentTime);
-                            break;
-                        case "Y":
-                            periodsPassed = ChronoUnit.YEARS.between(lastUpdated, currentTime);
-                            break;
-                        case "min":
-                            periodsPassed = ChronoUnit.MINUTES.between(lastUpdated, currentTime);
-                            break;
-                    }
-                    if (periodsPassed > 0) {
-                        for (long i = 0; i < periodsPassed; i++) {
-                            addInterest();
-                        }
-                        lastUpdated = lastUpdated.plus(periodsPassed, getChronoUnit());
-                        String updatedContent = content.replace("last updated: " + lastUpdated.format(formatter), "last updated: " + currentTime.format(formatter));
-                        updatedContent = updatedContent.replaceFirst("Balance: \\d+\\.\\d+", "Balance: " + getBalance());
-                        Files.write(Paths.get(filePath), updatedContent.getBytes());
-                        String initialCreationTime = parts[0].split("Account Created at: ")[1].split("\n")[0].trim();
-                        String accountDetails = super.getAccountName() + "\n" + super.getAccountNumber() + "\n" + "Balance: " + super.getBalance() + "\n" + "Account Created at: " + initialCreationTime + "\n" + "last updated: " + accountCreationDate.format(currentTime) + "\n";
-                        Methods.writeToFile(accountName, "Savings", accountDetails);
-                    }
+            String content = Methods.readInFile(accountName, "Savings");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String[] parts = content.split("last updated: ");
+            if (parts.length >= 1) {
+                LocalDateTime lastUpdated = LocalDateTime.parse(parts[1].trim(), formatter);
+                LocalDateTime currentTime = LocalDateTime.now();
+                long periodsPassed = 0;
+                switch (interestPeriod) {
+                    case "BW":
+                        periodsPassed = ChronoUnit.WEEKS.between(lastUpdated, currentTime) / 2;
+                        break;
+                    case "M":
+                        periodsPassed = ChronoUnit.MONTHS.between(lastUpdated, currentTime);
+                        break;
+                    case "Y":
+                        periodsPassed = ChronoUnit.YEARS.between(lastUpdated, currentTime);
+                        break;
+                    case "min":
+                        periodsPassed = ChronoUnit.MINUTES.between(lastUpdated, currentTime);
+                        break;
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
+                if (periodsPassed > 0) {
+                    // periods passed * interest = interest added to account
+                    for (long i = 0; i < periodsPassed; i++) {
+                        addInterest();
+                    }
+                    lastUpdated = lastUpdated.plus(periodsPassed, getChronoUnit());
+                    // after the interest has been calcualted over the number of periods passed
+                    // we can simply just update the text file's last updated section with the current time that it has been updated
+                    // simply using currentTime as it's been updated each time the program has been run (hence calling in main)
+                    String updatedContent = content.replace("last updated: " + lastUpdated.format(formatter), "last updated: " + currentTime.format(formatter));
+                    // how to replace the first instance of a specific item https://www.w3schools.com/java/ref_string_replacefirst.asp
+                    // we check for a "Balance: " followed by a digit more then once, plus a decimal since it's a double 
+                    updatedContent = updatedContent.replaceFirst("Balance: \\d+\\.\\d+", "Balance: " + getBalance());
+                    Methods.writeToFile(accountName, "Savings", updatedContent);
+                    String initialCreationTime = parts[0].split("Account Created at: ")[1].split("\n")[0].trim();
+                    String accountDetails =  super.toString() + "Account Created at: " + initialCreationTime + "\n" + "last updated: " + accountCreationDate.format(currentTime) + "\n";
+                    // super.getAccountName() + "\n" + super.getAccountNumber() + "\n" + "Balance: " + super.getBalance() + "\n" +
+                    Methods.writeToFile(accountName, "Savings", accountDetails);
+                }
             }
         } else {
-            System.out.println("Folder does not exist at all... wake up");
+            System.out.println("Folder does not exist at all...");
         }
     }
     

@@ -80,6 +80,11 @@ public class Methods {
         File file = new File(directoryName + "/" + fileName + ".txt");
         return file.exists();
     }
+    /**
+     * @param fileName - 
+     * @param directoryName
+     * @return
+     */
     public static String readInFile(String fileName, String directoryName) {
         String data = "";
         try {

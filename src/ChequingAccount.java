@@ -41,9 +41,18 @@ public class ChequingAccount extends Account {
         return accountNumber;
     }
 
-    public void deposit(double amount) {
+    public void deposit(String accountName, double amount) {
         if (amount > 0) {
+            // add amount to the current balance
             balance += amount;
+            Methods.writeToFile(accountName, "Chequing", this.toString());
+        }
+    }
+    public void withdraw(String accountName, double amount) {
+        if (amount > 0) {   
+            // add amount to the current balance
+            balance -= amount;
+            Methods.writeToFile(accountName, "Chequing", this.toString());
         }
     }
 

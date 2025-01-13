@@ -11,6 +11,9 @@ import java.time.temporal.*;
  * Management class for Savings Account
  */
 
+ /**
+  * @TODO: use stack for transaction history
+  */
 /**
  * Savings account class that extends the Account class and adds an interest rate and interest to the account
  */
@@ -136,6 +139,24 @@ public class SavingsAccount extends Account {
         setBalance(balance);
         lastInterestAddedDate = LocalDateTime.now();
     }
+
+    public void deposit(String accountName, double amount) {
+        if (amount > 0) {
+            // add amount to the current balance
+            setBalance(getBalance() + amount);
+            checkAndUpdateSavingsAccount();
+            Methods.writeToFile(accountName, "Savings", this.toString());
+        }
+    }
+
+    public void withdraw(String accountName, double amount) {
+        if (amount > 0) {   
+            // add amount to the current balance
+            setBalance(getBalance() - amount);
+            Methods.writeToFile(accountName, "Savings", this.toString());
+        }
+    }
+    
     /**
      * Converts the unit of time (Bi-weekly, Monthly, Yearly, Minutes)
      * @return Unit of time measured in years;
@@ -206,13 +227,13 @@ public class SavingsAccount extends Account {
      */
     public String createSavingsAccount(String accountName, String accountNumber, double balance, double interestRate, String interestPeriod) {
         // initialize standard savings account object
-        SavingsAccount savingsAccount = new SavingsAccount(accountName, accountNumber, balance, interestRate, interestPeriod);
+        // SavingsAccount savingsAccount = new SavingsAccount(accountName, accountNumber, balance, interestRate, interestPeriod);
         if (!Methods.fileExists(accountName, "Savings")) {
             Methods.createFile(accountName, "Savings");
         }
         now = LocalDateTime.now();
         // contents of file
-        String accountDetails = savingsAccount.toString() + "Account Created at: " + accountCreationDate.format(now) + "\n" + "last updated: " + accountCreationDate.format(now) + "\n";
+        String accountDetails = toString();
         Methods.writeToFile(accountName, "Savings", accountDetails);
         // add to the ArrayList<String>
         super.addAccountTypes("Savings");
@@ -328,6 +349,6 @@ public class SavingsAccount extends Account {
      */
     @Override
     public String toString() {
-        return super.toString() + "\n" + "Interest Rate: " + interestRate + "\n" + "Appreciation Period: " + interestPeriod + "\n";
+        return super.toString() + "\n" + "Interest Rate: " + interestRate + "\n" + "Appreciation Period: " + interestPeriod + "\n" + "Account Created at: " + "\n" + accountCreationDate.format(now) + "\n" + "last updated: " + accountCreationDate.format(now) + "\n";
     }
 }

@@ -37,6 +37,7 @@ public class Main {
             System.out.println("[4] - Chequeing (This is where you can view your chequeing account information)");
             System.out.println("[5] - Credit (This is where you can view your credit account information)");
             choice = input.nextInt();
+            input.nextLine(); // Consume the leftover newline character
 
             switch (choice) {
                 case 1:
@@ -138,6 +139,7 @@ public class Main {
      */
     public static void savingsAccountSection(Scanner input, SavingsAccount savingsAccount) {
         String savingsChoice;
+        double currencyAmount;
         do {
             System.out.println("Welcome to Your Savings Account Section!");
             System.out.println("Please Choose an Option Below:");
@@ -152,10 +154,18 @@ public class Main {
                 case "A":
                 return;
                 case "B":
-                System.out.println(savingsAccount.toString());
+                    System.out.print("How much would you like to deposit: ");
+                    currencyAmount = input.nextDouble();
+                    input.nextLine(); // Consume the leftover newline character
+                    savingsAccount.deposit(savingsAccount.getAccountName(), currencyAmount);
+                // System.out.println(savingsAccount.toString());
                 break;
                 case "C":
-                    // @TODO -  WORK ON MENU FOR SAVINGS
+                    System.out.print("How much would you like to withdraw: ");
+                    currencyAmount = input.nextDouble();
+                    input.nextLine(); // Consume the leftover newline character
+                    savingsAccount.withdraw(savingsAccount.getAccountName(), currencyAmount);
+                // System.out.println(savingsAccount.toString());
                 break;
                 default:
                     System.out.println("Invalid choice. Please try again.");

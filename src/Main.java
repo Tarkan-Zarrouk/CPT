@@ -16,8 +16,9 @@ public class Main {
         int choice = -1;
         Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
         SavingsAccount savingsAccount = new SavingsAccount("Tarkan Zarrouk", "1234-1234-1234-1234", 10,4.5, "min");
+        ChequingAccount chequingAccount = new ChequingAccount("Tarkan Zarrouk","1234-1234-1234", 45.00);
         savingsAccount.checkAndUpdateSavingsAccount();
-        callMain(choice, bankAccount, savingsAccount, input);
+        callMain(choice, bankAccount, savingsAccount,chequingAccount, input);
     }
     /**
      * Method that calls the main method and allows the user to choose an option to navigate through the program
@@ -27,7 +28,7 @@ public class Main {
      * @param input - scanner
      * @return void
      */
-    public static void callMain(int choice, Account bankAccount, SavingsAccount savingsAccount, Scanner input) {
+    public static void callMain(int choice, Account bankAccount, SavingsAccount savingsAccount, ChequingAccount chequingAccount, Scanner input) {
         do {
             System.out.println("Hi, welcome to your personalized banking application");
             System.out.println("Please Choose an Option:");
@@ -49,6 +50,9 @@ public class Main {
                 break;
                 case 3:
                     savingsAccountSection(input, savingsAccount);
+                break;
+                case 4:
+                    chequingAccountSection(input, chequingAccount);
                 break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -166,6 +170,47 @@ public class Main {
                     input.nextLine(); // Consume the leftover newline character
                     savingsAccount.withdraw(savingsAccount.getAccountName(), currencyAmount);
                 // System.out.println(savingsAccount.toString());
+                break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        } while (!savingsChoice.equals("A"));
+    }
+    /**
+     * Method that allows the user to navigate through the savings account section of the program and view their savings account information
+     * @param input - scanner
+     * @param savingsAccount - savings account
+     * @return void
+     */
+    public static void chequingAccountSection(Scanner input, ChequingAccount chequingAccount) {
+        String savingsChoice;
+        double currencyAmount;
+        do {
+            System.out.println("Welcome to Your Savings Account Section!");
+            System.out.println("Please Choose an Option Below:");
+            System.out.println("[A] - Exit");
+            System.out.println("[B] - Deposit");
+            System.out.println("[C] - Withdraw");
+            System.out.println("[C] - History");
+            
+            savingsChoice = input.nextLine().toUpperCase();
+            
+            switch (savingsChoice) {
+                case "A":
+                return;
+                case "B":
+                    System.out.print("How much would you like to deposit: ");
+                    currencyAmount = input.nextDouble();
+                    input.nextLine(); // Consume the leftover newline character
+                    chequingAccount.deposit(chequingAccount.getAccountName(), currencyAmount);
+                // System.out.println(chequingAccount.toString());
+                break;
+                case "C":
+                    System.out.print("How much would you like to withdraw: ");
+                    currencyAmount = input.nextDouble();
+                    input.nextLine(); // Consume the leftover newline character
+                    chequingAccount.withdraw(chequingAccount.getAccountName(), currencyAmount);
+                // System.out.println(chequingAccount.toString());
                 break;
                 default:
                     System.out.println("Invalid choice. Please try again.");

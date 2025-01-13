@@ -11,8 +11,8 @@ public class ChequingAccount extends Account {
     private double balance;
     private String accountNumber;
     // total constructor
-    public ChequingAccount(String accountNumber, double initialBalance) {
-        super(accountNumber, accountNumber, initialBalance);
+    public ChequingAccount(String accountName, String accountNumber, double initialBalance) {
+        super(accountName, accountNumber, initialBalance);
         this.accountNumber = accountNumber;
         this.balance = initialBalance;
     }
@@ -24,7 +24,7 @@ public class ChequingAccount extends Account {
     }
 
     public static String createChequingAccount(String accountName, String accountNumber, double balance) {
-        ChequingAccount chequingAccount = new ChequingAccount(accountNumber, balance);
+        ChequingAccount chequingAccount = new ChequingAccount(accountName,accountNumber, balance);
         if (!Methods.fileExists(accountName, "Chequing")) {
             Methods.createFile(accountName, "Chequing");
         }
@@ -56,18 +56,8 @@ public class ChequingAccount extends Account {
         }
     }
 
-    public boolean withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-            
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     @Override
     public String toString() {
-        return "Account Name: Chequing Account\nAccount Number: " + accountNumber + "\nBalance: " + balance + "\n" + "Account Type: Chequing";
+        return "Account Name: Chequing Account" + "\n" + "Account Number: " + accountNumber + "\n" + "Balance: " + balance + "\n" + "Account Type: Chequing";
     }
 }

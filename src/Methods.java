@@ -6,18 +6,15 @@ import java.util.Scanner;
 
 /**
  * Author: Tarkan Zarrouk
- * date: (due date)
- */
-
-/**
- * General purpose methods, callable throughout the files.
+ * date: 2025/01/17
+ * Reuseable methods
  */
 public class Methods { 
     /**
+     * Given the account name and the directoryName, we can create the base file for the account
      * @param accountName - name of the account
      * @param directoryName - name of the directory
      * @return void
-     * Given the account name and the directoryName, we can create the base file for the account
      */
     public static void createFile(String accountName, String directoryName) {
         try {
@@ -36,11 +33,11 @@ public class Methods {
         }
     }
     /**
+     * Generate a file based off the given name of the file, directory, and the contents of the file
      * @param fileName - name of the file
      * @param directoryName - name of the directory
      * @param contents - contents of the file
-     * @return void
-     * Given the name of the file + the directory of the desired path with the contents, we can write to that path
+     * @return Generated file from the desired path and name of the file
      */
     public static void writeToFile(String fileName, String directoryName, String contents) {
         try {
@@ -55,10 +52,10 @@ public class Methods {
         }
     }
     /**
+     * Delete file given directory name and file name 
      * @param directoryName - name of the directory
      * @param fileName - name of the file
-     * @return void
-     * Given the directory path and file, we can simply delete the specified file (account)
+     * @return Deletion of the file with a message indicating if successful or not
      */
     public static void deleteFile(String directoryName, String fileName) {
         // get path with object
@@ -71,24 +68,28 @@ public class Methods {
         }
     }
     /**
+     * Will return true or false depending on whether or not the file exists or not
      * @param fileName - name of the file
      * @param directoryName - name of the directory
-     * @return boolean
-     * Simple check to see whether or not the file actually exists 
+     * @return boolean 
      */
     public static boolean fileExists(String fileName, String directoryName) {
         File file = new File(directoryName + "/" + fileName + ".txt");
         return file.exists();
     }
     /**
-     * @param fileName - 
-     * @param directoryName
-     * @return
+     * Read in any file and return the contents of the file as a string
+     * @param fileName - name of the file
+     * @param directoryName - name of the directory
+     * @return returns the information existing within the file
      */
     public static String readInFile(String fileName, String directoryName) {
+        // contents of our file
         String data = "";
         try {
-            File file = new File(directoryName + "/" + fileName + ".txt");
+            String filePath = directoryName + "/" + fileName + ".txt";
+            File file = new File(filePath);
+            // parse file using scanner
             Scanner scanner = new Scanner(file);
             while(scanner.hasNextLine()) {
                 data += scanner.nextLine();

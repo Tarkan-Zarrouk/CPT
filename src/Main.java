@@ -1,11 +1,14 @@
 import java.util.Scanner;
-
+/**
+ * author: Tarkan Zarrouk
+ * date: 2025/01/17
+ * Main class where we run our program
+ */
 public class Main {
     /**
-     * Main method
+     * Main method that runs the program
      * @param args - arguments
      * @return void
-     * Main method that runs the program
      */
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -17,13 +20,12 @@ public class Main {
         callMain(choice, bankAccount, savingsAccount, input);
     }
     /**
-     * Call main method
+     * Method that calls the main method and allows the user to choose an option to navigate through the program
      * @param choice - choice
      * @param bankAccount - account
      * @param savingsAccount - savings account
      * @param input - scanner
      * @return void
-     * Method that calls the main method and allows the user to choose an option to navigate through the program
      */
     public static void callMain(int choice, Account bankAccount, SavingsAccount savingsAccount, Scanner input) {
         do {
@@ -53,13 +55,11 @@ public class Main {
         } while (choice != 1);
     }
     /**
-     * Account section
+     * Method that allows the user to navigate through the account section of the program and create, delete, and view their accounts
      * @param input - scanner
      * @param bankAccount - account
      * @param savingsAccount - savings account
-     * 
      * @return void
-     * Method that allows the user to navigate through the account section of the program and create, delete, and view their accounts
      */
     public static void accountSection(Scanner input, Account bankAccount, SavingsAccount savingsAccount) {
         String accountChoice;
@@ -131,12 +131,10 @@ public class Main {
         } while (!accountChoice.equals("A"));
     }
     /**
-     * Savings account section
+     * Method that allows the user to navigate through the savings account section of the program and view their savings account information
      * @param input - scanner
      * @param savingsAccount - savings account
-     * 
      * @return void
-     * Method that allows the user to navigate through the savings account section of the program and view their savings account information
      */
     public static void savingsAccountSection(Scanner input, SavingsAccount savingsAccount) {
         String savingsChoice;

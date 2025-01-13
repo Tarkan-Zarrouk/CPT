@@ -5,14 +5,9 @@ import java.time.format.*;
 import java.util.*;
 import java.time.temporal.*;
 
-// import java.time.LocalDateTime;
-// import java.time.temporal.ChronoUnit;
-// import java.util.Timer;
-// import java.util.TimerTask;
-
 /**
  * author: Tarkan Zarrouk
- * date: (due date)
+ * date: 2025/01/17
  * Management class for Savings Account
  */
 
@@ -56,73 +51,73 @@ public class SavingsAccount extends Account {
     }
 
     /**
-     * @return double - interest rate
      * Returns the interest rate of the account
+     * @return double - interest rate
      */
     public double getInterestRate() {
         return interestRate;
     }
 
     /**
-     * @return String - account name
      * Returns the account name
+     * @return String - account name
      */
     public String getAccountName() {
         return super.getAccountName();
     }
 
     /**
-     * @return String - account number
      * Returns the account number
+     * @return String - account number
      */
     public String getAccountNumber() {
         return super.getAccountNumber();
     }
 
     /**
-     * @return double - balance
      * Returns the balance of the account
+     * @return double - balance
      */
     public double getBalance() {
         return super.getBalance();
     }
 
     /**
-     * @param accountName - name of the account
      * Sets the account name
+     * @param accountName - name of the account
      */
     public void setAccountName(String accountName) {
         super.setAccountName(accountName);
     }
 
     /**
-     * @param accountNumber - number of the account
      * Sets the account number
+     * @param accountNumber - number of the account
      */
     public void setAccountNumber(String accountNumber) {
         super.setAccountNumber(accountNumber);
     }
 
     /**
-     * @param balance - balance of the account
      * Sets the balance of the account
+     * @param balance - balance of the account
      */
     public void setBalance(double balance) {
         super.setBalance(balance);
     }
 
     /**
-     * @return String - interest period
      * Method that returns the interest period
+     * @return String - interest period
      */
     public String getInterestPeriod() {
         return interestPeriod;
     }
 
     /**
+     * Sets the interest rate of the account
      * @param interestRate - rate at which the account will gain interest
      * @return void
-     * Sets the interest rate of the account
      */
     public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
@@ -142,7 +137,8 @@ public class SavingsAccount extends Account {
         lastInterestAddedDate = LocalDateTime.now();
     }
     /**
-     * @return Covnersion of period to years regardless of unit
+     * Converts the unit of time (Bi-weekly, Monthly, Yearly, Minutes)
+     * @return Unit of time measured in years;
      */
     public double getPeriodInYears() {
         switch (interestPeriod) {
@@ -158,9 +154,6 @@ public class SavingsAccount extends Account {
                 return 0;
         }
     }
-    /**
-     * W
-     */
     /**
      * Schedules a task to specific period check and add interest to the savings account.
      * The task runs at a fixed rate of every minute and checks the time elapsed since
@@ -203,6 +196,7 @@ public class SavingsAccount extends Account {
         timer.scheduleAtFixedRate(task, 0, 60 * 1000);
     }
     /**
+     * Generates a text-file called savings based off the accountName that is provided in the fixed directory of "Savings"
      * @param accountName - Name of Savings Account to be under
      * @param accountNumber - Savings Account number
      * @param balance - Initial Investment balance
@@ -239,7 +233,8 @@ public class SavingsAccount extends Account {
      * 8. Writes the updated content back to the file.
      * 9. Updates the account details in the file.
      * @throws IOException if an I/O error occurs reading from the file or writing to it.
-     * This has been AI generated.. Simply the prompt was "Create a method such that I am able to within the textFile that is attatched the current to the last updated time and then if it exceeds the period, then we can add interest"
+     * @return Updated balance, and updated date for "last updated: " section in text file
+     * This has been AI generated.. Simply the prompt was "Create a method such that I am able to compare within the textFile that is attatched the current to the last updated time and then if it exceeds the period, then we can add interest"
      * Though it did not create this... it took about 3 (unfortunate) hours of debugging and modifying to get it to actually work... not a fan of it but if it works it works
      */
     public void checkAndUpdateSavingsAccount() {
@@ -247,8 +242,10 @@ public class SavingsAccount extends Account {
         String folderPath = "Savings/" + accountName + ".txt";
         File file = new File(folderPath);
         if (file.exists() && file.isFile()) {
+            // read in file
             String content = Methods.readInFile(accountName, "Savings");
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            // after read in file, we split after the contents of the "last updated: " line has been discovered
             String[] parts = content.split("last updated: ");
             if (parts.length >= 1) {
                 LocalDateTime lastUpdated = LocalDateTime.parse(parts[1].trim(), formatter);
@@ -273,6 +270,10 @@ public class SavingsAccount extends Account {
                     for (long i = 0; i < periodsPassed; i++) {
                         addInterest();
                     }
+                    /**
+                     * Update the "last updated: " line with the current time that it is 
+                     * this is allowable since this will only update when period is >= 1 (essentially when it is the time or exceeds the maximum time for interest)
+                     */
                     lastUpdated = lastUpdated.plus(periodsPassed, getChronoUnit());
                     // after the interest has been calcualted over the number of periods passed
                     // we can simply just update the text file's last updated section with the current time that it has been updated
@@ -282,6 +283,9 @@ public class SavingsAccount extends Account {
                     // we check for a "Balance: " followed by a digit more then once, plus a decimal since it's a double 
                     updatedContent = updatedContent.replaceFirst("Balance: \\d+\\.\\d+", "Balance: " + getBalance());
                     Methods.writeToFile(accountName, "Savings", updatedContent);
+                    /**
+                     * the next to lines simply are a recreation of a toString method
+                     */
                     String initialCreationTime = parts[0].split("Account Created at: ")[1].split("\n")[0].trim();
                     String accountDetails =  super.toString() + "Account Created at: " + initialCreationTime + "\n" + "last updated: " + accountCreationDate.format(currentTime) + "\n";
                     // super.getAccountName() + "\n" + super.getAccountNumber() + "\n" + "Balance: " + super.getBalance() + "\n" +
@@ -320,6 +324,7 @@ public class SavingsAccount extends Account {
     }
     /**
      * conversion of parent class account names, numbers, balance then the output of the interest rate, and appreciation period to a string output
+     * @return - String copy of the parent class information, interest rate, and appreciation period
      */
     @Override
     public String toString() {

@@ -1,6 +1,6 @@
 /**
  * author: Tarkan Zarrouk
- * date: (due date)
+* date: 2025/01/17
  * Management class for Bank Account
  */
 

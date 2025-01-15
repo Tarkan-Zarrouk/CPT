@@ -3,6 +3,9 @@ import java.io.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.*;
+
+import utils.Methods;
+
 import java.time.temporal.*;
 
 /**
@@ -11,9 +14,6 @@ import java.time.temporal.*;
  * Management class for Savings Account
  */
 
- /**
-  * @TODO: use stack for transaction history
-  */
 /**
  * Savings account class that extends the Account class and adds an interest rate and interest to the account
  */
@@ -27,10 +27,6 @@ public class SavingsAccount extends Account {
      */
     private String interestPeriod;
     /**
-     * The current date and time.
-     */
-    private LocalDateTime now;
-    /**
      * The date and time when the interest was last added to the savings account.
      */
     private LocalDateTime lastInterestAddedDate;
@@ -39,6 +35,8 @@ public class SavingsAccount extends Account {
      * The date is formatted as "dd-MM-yyyy HH:mm:ss".
      */
     private DateTimeFormatter accountCreationDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
+    private TransactionHistory transaction = new TransactionHistory();
     /**
      * @param accountName - Account owner name
      * @param accountNumber - Account owner number
@@ -145,14 +143,16 @@ public class SavingsAccount extends Account {
             // add amount to the current balance
             setBalance(getBalance() + amount);
             checkAndUpdateSavingsAccount();
+            transaction.addTransaction("Deposited: " + amount + "to " + accountName);
             Methods.writeToFile(accountName, "Savings", this.toString());
         }
     }
-
+    
     public void withdraw(String accountName, double amount) {
         if (amount > 0) {   
             // add amount to the current balance
             setBalance(getBalance() - amount);
+            transaction.addTransaction("Withdraw: " + amount + "to " + accountName);
             Methods.writeToFile(accountName, "Savings", this.toString());
         }
     }
@@ -175,17 +175,7 @@ public class SavingsAccount extends Account {
                 return 0;
         }
     }
-    /**
-     * Schedules a task to specific period check and add interest to the savings account.
-     * The task runs at a fixed rate of every minute and checks the time elapsed since
-     * the last interest was added.
-     * periods:
-     * - "BW": Bi-weekly (every two weeks)
-     * - "M": Monthly
-     * - "Y": Yearly
-     * - "min": Every minute (this is used for simple debugging purposes)
-     */
-    public void checkAndAddInterest() {
+
         Timer timer = new Timer(true);
         TimerTask task = new TimerTask() {
             @Override
@@ -213,9 +203,6 @@ public class SavingsAccount extends Account {
                 }
             }
         };
-        // run every minute
-        timer.scheduleAtFixedRate(task, 0, 60 * 1000);
-    }
     /**
      * Generates a text-file called savings based off the accountName that is provided in the fixed directory of "Savings"
      * @param accountName - Name of Savings Account to be under
@@ -231,7 +218,7 @@ public class SavingsAccount extends Account {
         if (!Methods.fileExists(accountName, "Savings")) {
             Methods.createFile(accountName, "Savings");
         }
-        now = LocalDateTime.now();
+        // now = LocalDateTime.now();
         // contents of file
         String accountDetails = toString();
         Methods.writeToFile(accountName, "Savings", accountDetails);
@@ -349,6 +336,21 @@ public class SavingsAccount extends Account {
      */
     @Override
     public String toString() {
-        return super.toString() + "\n" + "Interest Rate: " + interestRate + "\n" + "Appreciation Period: " + interestPeriod + "\n" + "Account Created at: " + "\n" + accountCreationDate.format(now) + "\n" + "last updated: " + accountCreationDate.format(now) + "\n";
+        return super.toString() + 
+        "\n" + 
+        "Interest Rate: " + 
+        interestRate + 
+        "\n" + 
+        "Appreciation Period: " 
+        + interestPeriod
+        + "\n"
+        + (transaction != null ? transaction.toString() : "No transactions")
+        + "\n" 
+        + "Account Created at: " 
+        + accountCreationDate.format(now) 
+        + "\n" 
+        + "last updated: " 
+        + accountCreationDate.format(now) + "\n";
     }
+    
 }

@@ -1,4 +1,4 @@
-# Bank Ease
+# BankEase
 
 A combination of "Bank" and "Ease," emphasizing simplicity and user-friendliness.
 

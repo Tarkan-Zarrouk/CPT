@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import utils.Methods;
 
 /**
  * Parent class allowing you to perform actions such as Creating an account, deleting an account, adding money... et

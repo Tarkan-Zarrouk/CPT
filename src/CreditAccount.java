@@ -1,3 +1,9 @@
+import java.io.File;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import utils.Methods;
+
 /**
  * Author: Tarkan Zarrouk
  * Date: 2025/01/14
@@ -20,6 +26,10 @@ public class CreditAccount extends Account {
      * balance - The balance owed to the bank.
      */
     private double balance;
+    /**
+     * interestRate - Interest points charged to credit card on a monthly basis
+     */
+    private double interestRate;
 
     /**
      * Credit Account Object, pertains to the holder of this account
@@ -28,10 +38,11 @@ public class CreditAccount extends Account {
      * @param creditLimit - Credit Limit (Maximum limit pertaining to the current account)
      * @param balance - Balance left on the account
      */
-    public CreditAccount(String accountName, String accountNumber, double creditLimit, double balance) {
+    public CreditAccount(String accountName, String accountNumber, double creditLimit, double balance, double interestRate) {
         super(accountName, accountNumber);
         this.creditLimit = creditLimit;
         this.balance = balance;
+        this.interestRate = interestRate;
     }
     /**
      * Credit Account Object, pertains to the holder of this account (Balance of 0 this time)
@@ -39,10 +50,11 @@ public class CreditAccount extends Account {
      * @param accountName - Name of the person who owns this account
      * @param creditLimit - Credit Limit (Maximum limit pertaining to the current account)
      */
-    public CreditAccount(String accountNumber, String accountName, double creditLimit) {
+    public CreditAccount(String accountNumber, String accountName, double creditLimit, double interestRate) {
         super(accountName, accountNumber);
         this.creditLimit = creditLimit;
         this.balance = 0.0;
+        this.interestRate = interestRate; 
     }
     // Removed redundant constructors
     /**
@@ -118,6 +130,39 @@ public class CreditAccount extends Account {
      */
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    /**
+     * Applies monthly interest to the current balance.
+     * @param interestRate - The monthly interest rate to be applied
+     */
+    public void applyMonthlyInterest(double interestRate) {
+        if (interestRate > 0 && this.balance > 0) {
+            this.balance += this.balance * (interestRate / 100);
+            Methods.writeToFile(super.getAccountName(), "Credit", this.toString());
+        }
+    }
+
+    public void checkAndUpdateCreditAccount() {
+        String accountName = getAccountName();
+        String folderPath = "Credit/" + accountName + ".txt";
+        File file = new File(folderPath);
+        if(file.exists() && file.isFile()) {
+            String content = Methods.readInFile(accountName, "Credit");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+            String[] parts = content.split("last updated: ");
+            if (parts.length >= 2) {
+                LocalDateTime lastUpdated = LocalDateTime.parse(parts[1].trim(), formatter);
+                LocalDateTime currentTime = LocalDateTime.now();
+                long monthsPassed = java.time.temporal.ChronoUnit.MONTHS.between(lastUpdated, currentTime);
+                if (monthsPassed > 0) {
+                    for (int i = 0; i < monthsPassed; i++) {
+                        applyMonthlyInterest(interestRate);
+                    }
+                    Methods.writeToFile(accountName, "Credit", this.toString() + " last updated: " + currentTime.format(formatter));
+                }
+            }
+        }   
     }
 
     /**

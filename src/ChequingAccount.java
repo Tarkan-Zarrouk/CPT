@@ -1,8 +1,4 @@
-/**
- * author: Tarkan Zarrouk
-* date: 2025/01/17
- * Management class for Chequing Account
- */
+import utils.Methods;
 
 /**
  * A class representing a chequing account with a balance and account number.

@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import utils.Methods;
 /**
  * author: Tarkan Zarrouk
  * date: 2025/01/17
@@ -19,6 +20,7 @@ public class Main {
         ChequingAccount chequingAccount = new ChequingAccount("Tarkan Zarrouk","1234-1234-1234", 45.00);
         CreditAccount creditAccount = new CreditAccount("Tarkan Zarrouk", "1234-5678-9101-2445", 5000.0, 10.0);
         savingsAccount.checkAndUpdateSavingsAccount();
+        creditAccount.checkAndUpdateCreditAccount();
         callMain(choice, bankAccount, savingsAccount,chequingAccount, creditAccount, input);
     }
     /**

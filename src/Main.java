@@ -5,6 +5,10 @@ import utils.Methods;
  * date: 2025/01/17
  * Main class where we run our program
  */
+
+ /**
+  * Where every method for terminal based visuals will be found here.
+  */
 public class Main {
     /**
      * Main method that runs the program
@@ -15,13 +19,23 @@ public class Main {
         Scanner input = new Scanner(System.in);
         // default value of invalid option
         int choice = -1;
-        Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
+        // Account bankAccount = new Account("Tarkan Zarrouk", "1234-5678-9101-2445", 0.0);
         SavingsAccount savingsAccount = new SavingsAccount("Tarkan Zarrouk", "1234-1234-1234-1234", 10,4.5, "min");
-        ChequingAccount chequingAccount = new ChequingAccount("Tarkan Zarrouk","1234-1234-1234", 45.00);
-        CreditAccount creditAccount = new CreditAccount("Tarkan Zarrouk", "1234-5678-9101-2445", 5000.0, 10.0);
+        ChequingAccount chequingAccount = new ChequingAccount(
+        "Tarkan Zarrouk",
+        "1234-1234-1234", 
+        45.00
+        );
+        CreditAccount creditAccount = new CreditAccount(
+        "Tarkan Zarrouk", 
+        "1234-5678-9101-2445", 
+        5000.0,
+        1000.0, 
+        4.5
+        );
         savingsAccount.checkAndUpdateSavingsAccount();
         creditAccount.checkAndUpdateCreditAccount();
-        callMain(choice, bankAccount, savingsAccount,chequingAccount, creditAccount, input);
+        callMain(choice, savingsAccount,chequingAccount, creditAccount, input);
     }
     /**
      * Method that calls the main method and allows the user to choose an option to navigate through the program
@@ -31,7 +45,7 @@ public class Main {
      * @param input - scanner
      * @return void
      */
-    public static void callMain(int choice, Account bankAccount, SavingsAccount savingsAccount, ChequingAccount chequingAccount, CreditAccount creditAccount, Scanner input) {
+    public static void callMain(int choice, SavingsAccount savingsAccount, ChequingAccount chequingAccount, CreditAccount creditAccount, Scanner input) {
         do {
             System.out.println("Hi, welcome to your personalized banking application");
             System.out.println("Please Choose an Option:");
@@ -49,7 +63,7 @@ public class Main {
                     System.exit(0);
                 break;
                 case 2:
-                    accountSection(input, bankAccount, savingsAccount, creditAccount);
+                    accountSection(input, savingsAccount, creditAccount, chequingAccount);
                 break;
                 case 3:
                     savingsAccountSection(input, savingsAccount);
@@ -71,7 +85,7 @@ public class Main {
      * @param savingsAccount - savings account
      * @return void
      */
-    public static void accountSection(Scanner input, Account bankAccount, SavingsAccount savingsAccount, CreditAccount creditAccount) {
+    public static void accountSection(Scanner input, SavingsAccount savingsAccount, CreditAccount creditAccount, ChequingAccount chequingAccount) {
         String accountChoice;
         String accountName;
         String folderName;
@@ -82,7 +96,6 @@ public class Main {
             System.out.println("[B] - Add Account");
             System.out.println("[C] - Remove Account");
             System.out.println("[D] - Account information");
-            System.out.println("[E] - Transaction History");
 
             accountChoice = input.nextLine().toUpperCase();
 
@@ -105,14 +118,15 @@ public class Main {
                         break;
                         case "2":
                             System.out.println("Remember: The account name is fixed to your legal name with the directory of the type of account you're creating! 😊");
-                            ChequingAccount.createChequingAccount(bankAccount.getAccountName(), bankAccount.getAccountNumber(), bankAccount.getBalance());
+                            ChequingAccount.createChequingAccount(chequingAccount.getAccountName(), chequingAccount.getAccountNumber(), chequingAccount.getBalance());
                             // chequingAccount.createChequingAccount(folderName, accountName, chequingAccount.getAccountNumber(), chequingAccount.getBalance());
                             System.out.println("Successfully created account! 😊");
                             // System.out.println(account.getAccountTypes());
-                        break;
-                        case "3":
+                            break;
+                            case "3":
                             System.out.println("Remember the account name is fixed to your legal name witht the directory of the type of account you're creating! ");
-                            creditAccount.createCreditAccountFile(bankAccount.getAccountName(), bankAccount.getAccountNumber(), creditAccount.getCreditLimit(), creditAccount.getBalance());
+                            creditAccount.createCreditAccountFile(creditAccount.getAccountName(), creditAccount.getAccountNumber(), creditAccount.getCreditLimit(), creditAccount.getOwedBalance());
+                            System.out.println("Successfully created account! 😊");
                         break;
                         default:
                             System.out.println("Invalid choice. Please try again.");
@@ -130,10 +144,8 @@ public class Main {
                     }
                 break;
                 case "D":
-                    System.out.println(bankAccount.getAccountTypes());
+                    System.out.println(Account.getAccountTypes());
                     // System.out.println(bankAccount.toString());
-                break;
-                case "E":
                 break;
                 default:
                     System.out.println("Invalid choice. Please try again.");
@@ -165,19 +177,19 @@ public class Main {
                 case "B":
                     System.out.print("How much would you like to deposit: ");
                     currencyAmount = input.nextDouble();
-                    input.nextLine(); // Consume the leftover newline character
+                    input.nextLine();
                     savingsAccount.deposit(savingsAccount.getAccountName(), currencyAmount);
                 // System.out.println(savingsAccount.toString());
                 break;
                 case "C":
                     System.out.print("How much would you like to withdraw: ");
                     currencyAmount = input.nextDouble();
-                    input.nextLine(); // Consume the leftover newline character
+                    input.nextLine();
                     savingsAccount.withdraw(savingsAccount.getAccountName(), currencyAmount);
                 // System.out.println(savingsAccount.toString());
                 break;
                 case "D":
-                System.out.println("Currently under construction");
+                    System.out.println(savingsAccount.getTransactionHistory());
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
@@ -198,7 +210,7 @@ public class Main {
             System.out.println("[A] - Exit");
             System.out.println("[B] - Deposit");
             System.out.println("[C] - Withdraw");
-            System.out.println("[C] - History");
+            System.out.println("[D] - History");
             
             savingsChoice = input.nextLine().toUpperCase();
             
@@ -219,6 +231,8 @@ public class Main {
                     chequingAccount.withdraw(chequingAccount.getAccountName(), currencyAmount);
                 // System.out.println(chequingAccount.toString());
                 break;
+                case "D":
+                    System.out.println(chequingAccount.getTransactionHistory());
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }
@@ -258,7 +272,7 @@ public class Main {
                     creditAccount.charge(currencyAmount);
                 break;
                 case "D":
-                    System.out.println("meow - Still under work, come back later ;3");
+                    System.out.println(creditAccount.getTransactionHistory());
                 default:
                     System.out.println("Invalid choice. Please try again.");
             }

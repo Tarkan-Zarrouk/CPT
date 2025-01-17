@@ -10,6 +10,10 @@ import java.util.Scanner;
  * date: 2025/01/17
  * Reuseable methods
  */
+
+ /**
+  * Exists methods that are reuseable throughout the codebase
+  */
 public class Methods { 
     /**
      * Given the account name and the directoryName, we can create the base file for the account

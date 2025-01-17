@@ -1,11 +1,11 @@
-/**
- * author: Tarkan Zarrouk
-* date: 2025/01/17
- * Management class for Bank Account
- */
-
 import java.util.ArrayList;
 import utils.Methods;
+
+/**
+ * author: Tarkan Zarrouk
+ * date: 2025/01/17
+ * Management class for Bank Account
+ */
 
 /**
  * Parent class allowing you to perform actions such as Creating an account, deleting an account, adding money... et
@@ -29,10 +29,10 @@ public class Account {
     private static ArrayList<String> accountTypes = new ArrayList<>();
     
     /**
+     * Constructor for the Account class
      * @param accountName - name of the account
      * @param accountNumber - number of the account
      * @param balance - balance of the account
-     * Constructor for the Account class
      * */
     public Account(String accountName, String accountNumber, double balance) {
         this.accountNumber = accountNumber;
@@ -41,14 +41,20 @@ public class Account {
     }
     
     /**
+     * Constructor for the Account class
      * @param accountName - name of the account
      * @param accountNumber - number of the account
-     * Constructor for the Account class
      */
     public Account(String accountName, String accountNumber) {
         this.accountName = accountName;
         this.accountNumber = accountNumber;
-        this.balance = 0.0;
+    }
+    /**
+     * Partial constructor for the account class
+     * @param accountNumber
+     */
+    public Account(String accountName) {
+        this.accountName = accountName;
     }
     
     /**
@@ -135,7 +141,7 @@ public class Account {
      * Obtains the contents of the text file that contains all the types of existing accounts that has been created before.
      * @return Text file containing the types of accounts created (Savings, Chequing... etc)
      */
-    public String getAccountTypes() {
+    public static String getAccountTypes() {
         return Methods.readInFile("TypeOfAccounts", "Account Types");
     }
     /**

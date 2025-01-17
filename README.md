@@ -8,7 +8,15 @@ Bank Ease is a self-hosted banking application designed to simplify your financi
 
 ## Features
 
-@TODO: finish todo
+#### 1. Savings Account
+- Allows you to track your savings account withdrawls, deposit, plus a certain interest rate increment over a specific period of time, and finally you can also manage your transaction history as well!
+#### 2. Chequing Account
+- Allows you to track and manage your account balance by withdrawing, or depositing money into the account and tracking your history as well for the most accuracy!
+#### 3. Credit Account
+- Track your Credit Cards using our CreditCard object allowing you to apply your monthly interest charge as well!
+#### 4. Terminal based Application
+- The "Ease" in BankEase is the fact that our program is strictly based off the terminal so there are NOT to be any confusion within our application
+- We provide a simple "[1]" "[2]"... and "[A]" "[B]"... with automatical capitalization within our program so that you cannot fail to use our program!
 
 ## Installation
 
@@ -18,7 +26,7 @@ To install Bank Ease, follow these steps:
 2. Extract the zip file to a folder of your choice
 3. Click and drag the folder into your IDE of choice
 4. Head over to the main class
-5. Change the contents within the Objects (INSERT OBJECTS HERE) to fit your info
+5. Change the contents within the Objects (ChequingAccount, CreditAccount, SavingsAccount) to fit your info
 6. Click and run the main program
 5. Enjoy 😊
 

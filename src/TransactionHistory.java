@@ -1,6 +1,19 @@
 import java.util.Stack;
 
+/**
+ * author: Tarkan Zarrouk
+ * date: 2025/01/17
+ * TransactionHistory class in charge of managing transactions for any type of account that exists
+ */
+
+
+/**
+ * Can allow you to track Transactions made within the account (eg: withdraw, deposit)
+ */
 public class TransactionHistory {
+    /**
+     * A stack that stores the transaction history in Last-In-First-Out (LIFO) order.
+     */
     private Stack<String> transactions;
 
     public TransactionHistory() {

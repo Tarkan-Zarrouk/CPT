@@ -35,7 +35,13 @@ public class SavingsAccount extends Account {
      * The date is formatted as "dd-MM-yyyy HH:mm:ss".
      */
     private DateTimeFormatter accountCreationDate = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+    /**
+     * Returns the time this method is called at
+     */
     LocalDateTime now = LocalDateTime.now();
+    /**
+     * Stores the transaction history for this credit account.
+     */
     private TransactionHistory transaction = new TransactionHistory();
     /**
      * @param accountName - Account owner name
@@ -81,6 +87,13 @@ public class SavingsAccount extends Account {
      */
     public double getBalance() {
         return super.getBalance();
+    }
+    /**
+     * Retrieves the transaction history for this credit account.
+     * @return transaction - TransactionHistory for the credit account
+     */
+    public TransactionHistory getTransactionHistory() {
+        return transaction;
     }
 
     /**
@@ -137,22 +150,30 @@ public class SavingsAccount extends Account {
         setBalance(balance);
         lastInterestAddedDate = LocalDateTime.now();
     }
-
+    /**
+     * Deposits a specified amount into the savings account.
+     * @param accountName the name of the account holder.
+     * @param amount the amount to be deposited. Must be greater than 0.
+     */
     public void deposit(String accountName, double amount) {
         if (amount > 0) {
             // add amount to the current balance
             setBalance(getBalance() + amount);
             checkAndUpdateSavingsAccount();
-            transaction.addTransaction("Deposited: " + amount + "to " + accountName);
+            transaction.addTransaction("Deposited: " + amount + " to" + " " + accountName);
             Methods.writeToFile(accountName, "Savings", this.toString());
         }
     }
-    
+    /**
+     * Withdraws a specified amount from the savings account.
+     * @param accountName the name of the account from which the withdrawal is made
+     * @param amount the amount to be withdrawn, must be greater than 0
+     */
     public void withdraw(String accountName, double amount) {
         if (amount > 0) {   
             // add amount to the current balance
             setBalance(getBalance() - amount);
-            transaction.addTransaction("Withdraw: " + amount + "to " + accountName);
+            transaction.addTransaction("Withdraw: " + amount + " to " + accountName);
             Methods.writeToFile(accountName, "Savings", this.toString());
         }
     }
@@ -344,8 +365,9 @@ public class SavingsAccount extends Account {
         "Appreciation Period: " 
         + interestPeriod
         + "\n"
-        + (transaction != null ? transaction.toString() : "No transactions")
-        + "\n" 
+        + "Transactions: "
+        + "\n"
+        + (transaction != null ? transaction.toString() : "No transactions") 
         + "Account Created at: " 
         + accountCreationDate.format(now) 
         + "\n" 

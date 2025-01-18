@@ -8,7 +8,7 @@ import utils.Methods;
  */
 
 /**
- * Parent class allowing you to perform actions such as Creating an account, deleting an account, adding money... et
+ * Parent class allowing you to perform actions such as Creating an account, deleting an account, adding money... etc
  */
 public class Account {
     /**
@@ -29,7 +29,7 @@ public class Account {
     private static ArrayList<String> accountTypes = new ArrayList<>();
     
     /**
-     * Constructor for the Account class
+     * Sets the instances of the accountName, accountNumber, and balance of the Base Account
      * @param accountName - name of the account
      * @param accountNumber - number of the account
      * @param balance - balance of the account
@@ -41,7 +41,7 @@ public class Account {
     }
     
     /**
-     * Constructor for the Account class
+     * Partial constructor that sets the instances of accountName, and accountNumber
      * @param accountName - name of the account
      * @param accountNumber - number of the account
      */
@@ -50,7 +50,7 @@ public class Account {
         this.accountNumber = accountNumber;
     }
     /**
-     * Partial constructor for the account class
+     * Partial constructor that sets the instances of the accountName
      * @param accountNumber
      */
     public Account(String accountName) {
@@ -58,12 +58,12 @@ public class Account {
     }
     
     /**
+     * Given the directory name, account name, account number, and balance, we can create an account
      * @param directoryName - name of the directory
      * @param accountName - name of the account
      * @param accountNumber - number of the account
      * @param balance - balance of the account
      * @return String
-     * Given the directory name, account name, account number, and balance, we can create an account
      */
     public String createAccount(String directoryName, String accountNumber, double balance) {
         Account account = new Account(accountName, accountNumber, balance);
@@ -75,10 +75,10 @@ public class Account {
     }
     
     /**
+     * Given the directory name and account name, we can delete the account
      * @param directoryName - name of the directory
      * @param accountName - name of the account
-     * @return String
-     * Given the directory name and account name, we can delete the account
+     * @return accountNumber - Number of the account
      */
     public String getAccountNumber() {
         return accountNumber;
@@ -121,7 +121,6 @@ public class Account {
     /**
      * Set the account name
      * @param accountName - name of the account
-     * Sets the account name
      */
     public void setAccountName(String accountName) {
         this.accountName = accountName;
@@ -145,6 +144,7 @@ public class Account {
         return Methods.readInFile("TypeOfAccounts", "Account Types");
     }
     /**
+     * Converts all private instances into string
      * @return Converts the general account info to a stringable output
      */
     @Override

@@ -23,12 +23,23 @@ public class ChequingAccount extends Account {
      */
     private TransactionHistory transaction;
 
+    /**
+     * Total constructor that sets the account name, account number, and balance to the Chequing Account
+     * @param accountName
+     * @param accountNumber
+     * @param balance
+     */
     public ChequingAccount(String accountName, String accountNumber, double balance) {
         super(accountName, accountNumber);
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.transaction = new TransactionHistory();
     }    
+    /**
+     * Partial constructor that sets teh accountName, and accountNumber
+     * @param accountName
+     * @param accountNumber
+     */
     public ChequingAccount(String accountName, String accountNumber) {
         super(accountName, accountNumber);
         this.accountNumber = accountNumber;

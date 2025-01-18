@@ -40,6 +40,14 @@ public class CreditAccount extends Account {
      */
     private TransactionHistory transaction = new TransactionHistory();
 
+    /**
+     * Total constructor that sets the account name, account number, credit limit, balance and interest rate to the Credit Card Account
+     * @param accountName
+     * @param accountNumber
+     * @param creditLimit
+     * @param balance
+     * @param interestRate
+     */
     public CreditAccount(String accountName, String accountNumber, double creditLimit, double balance, double interestRate) {
         super(accountName);
         this.accountName = accountName;
@@ -48,7 +56,13 @@ public class CreditAccount extends Account {
         this.balance = balance;
         this.interestRate = interestRate;
     }
-
+    /**
+     * Partial constructor that sets the account number, accountName, creditLimit, and balance to the Credit Card Account
+     * @param accountNumber
+     * @param accountName
+     * @param creditLimit
+     * @param balance
+     */
     public CreditAccount(String accountNumber, String accountName, double creditLimit, double balance) {
         super(accountName, accountNumber);
         this.accountName = accountName;
@@ -122,7 +136,8 @@ public class CreditAccount extends Account {
     }
 
     /**
-     * @return balance - The balance owed to the bank
+     * Obtains the double value of the balance
+     * @return The balance owed to the bank
      */
     public double getOwedBalance() {
         return balance;
@@ -156,6 +171,7 @@ public class CreditAccount extends Account {
     /**
      * Checks the credit account file to determine the last update date and applies any pending monthly interest if necessary
      * The method ensures that the account is updated for every month that has passed since the last recorded update.
+     * @return Monthly interest applied to the balance of the Credit Card Account
      */
     public void checkAndUpdateCreditAccount() {
         String accountName = getAccountName();
@@ -210,7 +226,7 @@ public class CreditAccount extends Account {
     }
     /**
      * Converts the credit account details to a string representation.
-     * @return - String copy of the credit account information
+     * @return String - String copy of the credit account information
      */
     @Override
     public String toString() {

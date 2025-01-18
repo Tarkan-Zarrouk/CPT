@@ -248,7 +248,7 @@ public class SavingsAccount extends Account {
         return "Successfully created or updated " + accountName;
     }
     /**
-     * Definitely an interesting method here...
+     * Updates the current savings account balance to the new savings account balance that has the applied interest rate on it.
      * Checks and updates the savings account based on the last updated time.
      * This method performs the following steps:
      * 1. Retrieves the account name and constructs the file path for the account.

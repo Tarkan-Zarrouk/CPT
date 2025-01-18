@@ -4,7 +4,16 @@ import main.ChequingAccount;
 import main.TransactionHistory;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
+/**
+ * author: Tarkan Zarrouk
+ * date: 2025/01/19
+ * Unit testing
+ */
 
+
+ /**
+  * Unit tests for the Chequing Account class
+  */
 public class ChequingAccountTest {
     @Test
     void testCreateChequingAccount_1() {

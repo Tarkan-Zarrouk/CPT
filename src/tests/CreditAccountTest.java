@@ -7,6 +7,17 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 
+
+/**
+ * author: Tarkan Zarrouk
+ * date: 2025/01/19
+ * Unit testing
+ */
+
+
+ /**
+  * Unit tests for the Credit Account class
+  */
 public class CreditAccountTest {
 
     @BeforeEach

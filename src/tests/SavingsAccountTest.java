@@ -7,6 +7,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Assertions;
 
+/**
+ * author: Tarkan Zarrouk
+ * date: 2025/01/19
+ * Unit testing
+ */
+
+
+ /**
+  * Unit tests for the Savings Account class
+  */
 public class SavingsAccountTest {
 
     private SavingsAccount savingsAccount;

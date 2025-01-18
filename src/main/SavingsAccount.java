@@ -4,14 +4,11 @@ import java.io.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.*;
-
-import main.utils.Methods;
-
 import java.time.temporal.*;
 
 /**
  * author: Tarkan Zarrouk
- * date: 2025/01/17
+ * date: 2025/01/19
  * Management class for Savings Account
  */
 
@@ -20,11 +17,11 @@ import java.time.temporal.*;
  */
 public class SavingsAccount extends Account {
     /**
-     * interestRate - the rate at which the account will gain interest
+     * interestRate the rate at which the account will gain interest
      */
     private double interestRate;
     /**
-     * interestPeriod - the period at which the account will gain interest
+     * interestPeriod the period at which the account will gain interest
      */
     private String interestPeriod;
     /**
@@ -45,11 +42,11 @@ public class SavingsAccount extends Account {
      */
     private TransactionHistory transaction = new TransactionHistory();
     /**
-     * @param accountName - Account owner name
-     * @param accountNumber - Account owner number
-     * @param balance - Total balance
-     * @param interestRate - Interest rate applied to savings account (can be 0,+♾️)
-     * @param interestPeriod - Period for which the interest gets compounded (biweekly, monthly, minutes, yearly)
+     * @param accountName Account owner name
+     * @param accountNumber Account owner number
+     * @param balance Total balance
+     * @param interestRate Interest rate applied to savings account (can be 0,+♾️)
+     * @param interestPeriod Period for which the interest gets compounded (biweekly, monthly, minutes, yearly)
      */
     public SavingsAccount(String accountName, String accountNumber, double balance, double interestRate, String interestPeriod) {
         super(accountName, accountNumber, balance);
@@ -60,7 +57,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Returns the interest rate of the account
-     * @return double - interest rate
+     * @return Double interest rate
      */
     public double getInterestRate() {
         return interestRate;
@@ -68,7 +65,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Returns the account name
-     * @return String - account name
+     * @return String account name
      */
     public String getAccountName() {
         return super.getAccountName();
@@ -76,7 +73,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Returns the account number
-     * @return String - account number
+     * @return String account number
      */
     public String getAccountNumber() {
         return super.getAccountNumber();
@@ -84,14 +81,14 @@ public class SavingsAccount extends Account {
 
     /**
      * Returns the balance of the account
-     * @return double - balance
+     * @return Double balance
      */
     public double getBalance() {
         return super.getBalance();
     }
     /**
      * Retrieves the transaction history for this credit account.
-     * @return transaction - TransactionHistory for the credit account
+     * @return transaction TransactionHistory for the credit account
      */
     public TransactionHistory getTransactionHistory() {
         return transaction;
@@ -99,7 +96,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Sets the account name
-     * @param accountName - name of the account
+     * @param accountName Name of the account
      */
     public void setAccountName(String accountName) {
         super.setAccountName(accountName);
@@ -107,7 +104,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Sets the account number
-     * @param accountNumber - number of the account
+     * @param accountNumber Number of the account
      */
     public void setAccountNumber(String accountNumber) {
         super.setAccountNumber(accountNumber);
@@ -115,7 +112,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Sets the balance of the account
-     * @param balance - balance of the account
+     * @param balance Balance of the account
      */
     public void setBalance(double balance) {
         super.setBalance(balance);
@@ -123,7 +120,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Method that returns the interest period
-     * @return String - interest period
+     * @return String interest period
      */
     public String getInterestPeriod() {
         return interestPeriod;
@@ -131,8 +128,8 @@ public class SavingsAccount extends Account {
 
     /**
      * Sets the interest rate of the account
-     * @param interestRate - rate at which the account will gain interest
-     * @return void
+     * @param interestRate Rate at which the account will gain interest
+     * @return void nothing
      */
     public void setInterestRate(double interestRate) {
         this.interestRate = interestRate;
@@ -140,7 +137,7 @@ public class SavingsAccount extends Account {
 
     /**
      * Compound interest formula
-     * A(t) = (balance)(1+(interestrate/100))^period - balance
+     * A(t) = (balance)(1+(interestrate/100))^period balance
      * Will return interest dollar amount, not applying balance
      * We then apply the balance to the account afterwards.
      */
@@ -153,8 +150,8 @@ public class SavingsAccount extends Account {
     }
     /**
      * Deposits a specified amount into the savings account.
-     * @param accountName the name of the account holder.
-     * @param amount the amount to be deposited. Must be greater than 0.
+     * @param accountName The name of the account holder.
+     * @param amount The amount to be deposited. Must be greater than 0.
      */
     public void deposit(String accountName, double amount) {
         if (amount > 0) {
@@ -167,8 +164,8 @@ public class SavingsAccount extends Account {
     }
     /**
      * Withdraws a specified amount from the savings account.
-     * @param accountName the name of the account from which the withdrawal is made
-     * @param amount the amount to be withdrawn, must be greater than 0
+     * @param accountName The name of the account from which the withdrawal is made
+     * @param amount The amount to be withdrawn, must be greater than 0
      */
     public void withdraw(String accountName, double amount) {
         if (amount > 0) {   
@@ -227,11 +224,11 @@ public class SavingsAccount extends Account {
         };
     /**
      * Generates a text-file called savings based off the accountName that is provided in the fixed directory of "Savings"
-     * @param accountName - Name of Savings Account to be under
-     * @param accountNumber - Savings Account number
-     * @param balance - Initial Investment balance
-     * @param interestRate - Interest rate of the Savings Account
-     * @param interestPeriod - How many times should it be compounded over a period of time
+     * @param accountName Name of Savings Account to be under
+     * @param accountNumber Savings Account number
+     * @param balance Initial Investment balance
+     * @param interestRate Interest rate of the Savings Account
+     * @param interestPeriod How many times should it be compounded over a period of time
      * @return Message of successful with the account name 
      */
     public String createSavingsAccount(String accountName, String accountNumber, double balance, double interestRate, String interestPeriod) {
@@ -254,7 +251,7 @@ public class SavingsAccount extends Account {
      * This method performs the following steps:
      * 1. Retrieves the account name and constructs the file path for the account.
      * 2. After we obtain the info we need it checks if the account file exists and is a valid file.
-     *      i - If there is no folder at all, we return a print statement indicating no file exists
+     *      i If there is no folder at all, we return a print statement indicating no file exists
      * 3. Reads the content of the account file.
      * 4. Breaks down the file to find the last updated time from the file content.
      * 5. Calculates the number of interest periods that have passed since the last update.
@@ -262,7 +259,7 @@ public class SavingsAccount extends Account {
      * 7. Updates the last updated time and balance in the file content.
      * 8. Writes the updated content back to the file.
      * 9. Updates the account details in the file.
-     * @throws IOException if an I/O error occurs reading from the file or writing to it.
+     * @throws IOException If an I/O error occurs reading from the file or writing to it.
      * @return Updated balance, and updated date for "last updated: " section in text file
      * This has been AI generated.. Simply the prompt was "Create a method such that I am able to compare within the textFile that is attatched the current to the last updated time and then if it exceeds the period, then we can add interest"
      * Though it did not create this... it took about 3 (unfortunate) hours of debugging and modifying to get it to actually work... not a fan of it but if it works it works
@@ -330,12 +327,12 @@ public class SavingsAccount extends Account {
     /**
      * Returns the corresponding date based on the interest period.
      * The interest period is expected to be one of the following:
-     * "BW" - Biweekly
-     * "M" - Monthly
-     * "Y" - Yearly
-     * "min" - Minute
-     * @return the corresponding for the interest period
-     * @throws IllegalArgumentException if the interest period is not recognized
+     * "BW" Biweekly
+     * "M" Monthly
+     * "Y" Yearly
+     * "min" Minute
+     * @return The corresponding for the interest period
+     * @throws IllegalArgumentException If the interest period is not recognized
      * source: https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/time/temporal/ChronoUnit.html?is-external=true
      */
     public ChronoUnit getChronoUnit() {
@@ -356,8 +353,8 @@ public class SavingsAccount extends Account {
         return accountCreationDate.format(now);
     }
     /**
-     * conversion of parent class account names, numbers, balance then the output of the interest rate, and appreciation period to a string output
-     * @return - String copy of the parent class information, interest rate, and appreciation period
+     * Conversion of parent class account names, numbers, balance then the output of the interest rate, and appreciation period to a string output
+     * @return String Copy of the parent class information, interest rate, and appreciation period
      */
     @Override
     public String toString() {

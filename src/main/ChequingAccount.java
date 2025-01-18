@@ -1,10 +1,8 @@
 package main;
 
-import main.utils.Methods;
-
 /**
  * author: Tarkan Zarrouk
- * date: 2025/01/17
+ * date: 2025/01/19
  * Chequing Account Class Implementation
  */
 
@@ -27,9 +25,9 @@ public class ChequingAccount extends Account {
 
     /**
      * Total constructor that sets the account name, account number, and balance to the Chequing Account
-     * @param accountName
-     * @param accountNumber
-     * @param balance
+     * @param accountName Owner of the account
+     * @param accountNumber Number associated with the account
+     * @param balance Balance of the Chequing account
      */
     public ChequingAccount(String accountName, String accountNumber, double balance) {
         super(accountName, accountNumber);
@@ -39,8 +37,8 @@ public class ChequingAccount extends Account {
     }    
     /**
      * Partial constructor that sets teh accountName, and accountNumber
-     * @param accountName
-     * @param accountNumber
+     * @param accountName Owner of the account
+     * @param accountNumber Number associated with the account
      */
     public ChequingAccount(String accountName, String accountNumber) {
         super(accountName, accountNumber);
@@ -50,9 +48,9 @@ public class ChequingAccount extends Account {
     }
     /**
      * Generates a Chequing account file
-     * @param accountName - Name of the person who owns the account
-     * @param accountNumber - Account number associated with the account
-     * @param balance - Current balance of the chequing account
+     * @param accountName Name of the person who owns the account
+     * @param accountNumber Account number associated with the account
+     * @param balance Current balance of the chequing account
      * @return Text file containing the information pertaining to the Chequing Accounbt + a return message.
      */
     public static String createChequingAccount(String accountName, String accountNumber, double balance) {
@@ -67,7 +65,7 @@ public class ChequingAccount extends Account {
     
     /**
      * Obtains balance of account
-     * @return balance
+     * @return Balance of Chequing Account
      */
     public double getBalance() {
         return this.balance;
@@ -75,7 +73,7 @@ public class ChequingAccount extends Account {
     
     /**
      * Obtains account number
-     * @return accountNumber
+     * @return Account number associated with the Chequing Account
      */
     public String getAccountNumber() {
         return accountNumber;
@@ -83,7 +81,7 @@ public class ChequingAccount extends Account {
 
     /**
      * Set the account number to a specific value 
-     * @param accountNumber - Sets the account number
+     * @param accountNumber Sets the account number
      */
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
@@ -98,8 +96,8 @@ public class ChequingAccount extends Account {
     
     /**
      * Deposit money into the Chequing Account
-     * @param accountName - Owner of the account
-     * @param amount - Added balance to the account
+     * @param accountName Owner of the account
+     * @param amount Added balance to the account
      */
     public void deposit(String accountName, double amount) {
         if (amount > 0) {
@@ -111,13 +109,13 @@ public class ChequingAccount extends Account {
     
     /**
      * Withdraw money from the Chequing Account
-     * @param accountName - Owner of the account
-     * @param amount - Amount to remove from existing balance
+     * @param accountName Owner of the account
+     * @param amount Amount to remove from existing balance
      */
     public void withdraw(String accountName, double amount) {
         if (amount > 0) {   
             // remove the amount from the balance
-            balance -= amount;
+            balance= amount;
             // rewrite file to contain updated information
             transaction.addTransaction("Withdrew: " + amount + " to Chequing Account.");
             Methods.writeToFile(accountName, "Chequing", this.toString());
@@ -126,6 +124,7 @@ public class ChequingAccount extends Account {
 
 
     /**
+     * Converts to a string output
      * @return Converts the general account info to a stringable output
      */
     @Override

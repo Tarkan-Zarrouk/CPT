@@ -1,11 +1,9 @@
 package main;
 import java.util.ArrayList;
 
-import main.utils.Methods;
-
 /**
  * author: Tarkan Zarrouk
- * date: 2025/01/17
+ * date: 2025/01/19
  * Management class for Bank Account
  */
 
@@ -32,9 +30,9 @@ public class Account {
     
     /**
      * Sets the instances of the accountName, accountNumber, and balance of the Base Account
-     * @param accountName - name of the account
-     * @param accountNumber - number of the account
-     * @param balance - balance of the account
+     * @param accountName Name of the account
+     * @param accountNumber Number of the account
+     * @param balance Balance of the account
      * */
     public Account(String accountName, String accountNumber, double balance) {
         this.accountNumber = accountNumber;
@@ -44,8 +42,8 @@ public class Account {
     
     /**
      * Partial constructor that sets the instances of accountName, and accountNumber
-     * @param accountName - name of the account
-     * @param accountNumber - number of the account
+     * @param accountName Name of the account
+     * @param accountNumber Number of the account
      */
     public Account(String accountName, String accountNumber) {
         this.accountName = accountName;
@@ -53,7 +51,7 @@ public class Account {
     }
     /**
      * Partial constructor that sets the instances of the accountName
-     * @param accountNumber
+     * @param accountNumber Number associated with the account
      */
     public Account(String accountName) {
         this.accountName = accountName;
@@ -61,11 +59,11 @@ public class Account {
     
     /**
      * Given the directory name, account name, account number, and balance, we can create an account
-     * @param directoryName - name of the directory
-     * @param accountName - name of the account
-     * @param accountNumber - number of the account
-     * @param balance - balance of the account
-     * @return String
+     * @param directoryName Name of the directory
+     * @param accountName Name of the account
+     * @param accountNumber Number of the account
+     * @param balance Balance of the account
+     * @return Created Account with message of succession of account name
      */
     public String createAccount(String directoryName, String accountNumber, double balance) {
         Account account = new Account(accountName, accountNumber, balance);
@@ -78,9 +76,9 @@ public class Account {
     
     /**
      * Given the directory name and account name, we can delete the account
-     * @param directoryName - name of the directory
-     * @param accountName - name of the account
-     * @return accountNumber - Number of the account
+     * @param directoryName Name of the directory
+     * @param accountName Name of the account
+     * @return accountNumber Number of the account
      */
     public String getAccountNumber() {
         return accountNumber;
@@ -88,14 +86,14 @@ public class Account {
     
     /**
      * Get the account number
-     * @return owner of the actual account
+     * @return Owner of the actual account
      */
     public String getAccountName() {
         return accountName;
     }
     /**
      * Clears the Account Types ArrayList
-     * @return empty Account Types
+     * @return Empty Account Types
      */
     public static void resetAccountTypes() {
         accountTypes.clear();
@@ -109,9 +107,9 @@ public class Account {
     }
     
     /**
-     * Set the balance
-     * @param accountNumber - number of the account
-     * Sets the account number
+     * Set the account number
+     * @param accountNumber Number of the account
+     * Sets the Account number
      */
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
@@ -119,7 +117,7 @@ public class Account {
     
     /**
      * Set the balance
-     * @param balance - balance of the account
+     * @param balance Balance of the account
      * Sets the balance of the account
      */
     public void setBalance(double balance) {
@@ -128,7 +126,7 @@ public class Account {
     
     /**
      * Set the account name
-     * @param accountName - name of the account
+     * @param accountName Name of the account
      */
     public void setAccountName(String accountName) {
         this.accountName = accountName;
@@ -136,7 +134,7 @@ public class Account {
     
     /**
      * Adds the account type to the account
-     * @param accountType - type of account
+     * @param accountType Type of account
      */
     public static void addAccountTypes(String accountType) {
         accountTypes.add(accountType);

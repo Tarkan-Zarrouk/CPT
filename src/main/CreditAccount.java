@@ -3,8 +3,6 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import main.utils.Methods;
-
 /**
  * Author: Tarkan Zarrouk
  * Date: 2025/01/14
@@ -43,11 +41,11 @@ public class CreditAccount extends Account {
 
     /**
      * Total constructor that sets the account name, account number, credit limit, balance and interest rate to the Credit Card Account
-     * @param accountName
-     * @param accountNumber
-     * @param creditLimit
-     * @param balance
-     * @param interestRate
+     * @param accountName Owner of the account
+     * @param accountNumber Number associated with the Credit account
+     * @param creditLimit Limit on the account
+     * @param balance Current balance on the account
+     * @param interestRate Interest charged on a monthly basis
      */
     public CreditAccount(String accountName, String accountNumber, double creditLimit, double balance, double interestRate) {
         super(accountName);
@@ -59,10 +57,10 @@ public class CreditAccount extends Account {
     }
     /**
      * Partial constructor that sets the account number, accountName, creditLimit, and balance to the Credit Card Account
-     * @param accountNumber
-     * @param accountName
-     * @param creditLimit
-     * @param balance
+     * @param accountNumber Owner of the account 
+     * @param accountName Number associated with the account
+     * @param creditLimit Limit on the account
+     * @param balance Current balance on the account    
      */
     public CreditAccount(String accountNumber, String accountName, double creditLimit, double balance) {
         super(accountName, accountNumber);
@@ -74,10 +72,10 @@ public class CreditAccount extends Account {
 
     /**
      * Generates a Credit account file
-     * @param accountName - Name of the person who owns the account
-     * @param accountNumber - Account number associated with the account
-     * @param creditLimit - Maximum spending limit on the account
-     * @param balance - Current balance of the credit account
+     * @param accountName Name of the person who owns the account
+     * @param accountNumber Account number associated with the account
+     * @param creditLimit Maximum spending limit on the account
+     * @param balance Current balance of the credit account
      * @return Text file containing the information pertaining to the Credit Account + a return message.
      */
     public String createCreditAccountFile(String accountName, String accountNumber, double creditLimit, double balance) {
@@ -91,6 +89,7 @@ public class CreditAccount extends Account {
     }
     /**
      * Returns the account number
+     * @return Number associated with the account
      */
     public String getAccountNumber() {
         return accountNumber;
@@ -98,7 +97,7 @@ public class CreditAccount extends Account {
 
     /**
      * Sets the account number for this credit account
-     * @param accountNumber - The new account number
+     * @param accountNumber The new account number
      */
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
@@ -106,7 +105,7 @@ public class CreditAccount extends Account {
 
     /**
      * Returns the account owner's name
-     * @return accountName - The name of the person who owns this account
+     * @return The name of the person who owns this account
      */
     public String getAccountName() {
         return accountName;
@@ -114,7 +113,7 @@ public class CreditAccount extends Account {
 
     /**
      * Sets the account holder's name for this credit account
-     * @param accountName - The new account holder's name
+     * @param accountName The new account holder's name
      */
     public void setaccountName(String accountName) {
         this.accountName = accountName;
@@ -122,7 +121,7 @@ public class CreditAccount extends Account {
 
     /**
      * Returns the maximum credit balance attainable in the account
-     * @return creditLimit - The maximum spending limit on the account
+     * @return The maximum spending limit on the account
      */
     public double getCreditLimit() {
         return creditLimit;
@@ -130,7 +129,7 @@ public class CreditAccount extends Account {
 
     /**
      * Sets the credit limit for this credit account.
-     * @param creditLimit - The new credit limit
+     * @param creditLimit The new credit limit
      */
     public void setCreditLimit(double creditLimit) {
         this.creditLimit = creditLimit;
@@ -146,14 +145,14 @@ public class CreditAccount extends Account {
 
     /**
      * Sets the current balance for this credit account.
-     * @param balance - The new current balance
+     * @param balance The new current balance
      */
     public void setBalance(double balance) {
         this.balance = balance;
     }
     /**
      * Retrieves the transaction history for the credit account 
-     * @return transaction object that contains the history of transactions associated with the account
+     * @return Transaction object that contains the history of transactions associated with the account
      */
     public TransactionHistory getTransactionHistory() {
         return transaction;
@@ -161,7 +160,7 @@ public class CreditAccount extends Account {
 
     /**
      * Applies monthly interest to the current balance.
-     * @param interestRate - The monthly interest rate to be applied
+     * @param interestRate The monthly interest rate to be applied
      */
     public void applyMonthlyInterest(double interestRate) {
         if (interestRate > 0 && this.balance > 0) {
@@ -198,14 +197,14 @@ public class CreditAccount extends Account {
 
     /**
      * Makes a payment to reduce the current balance.
-     * @param amount - The amount to be paid
+     * @param amount The amount to be paid
      */
     public void makePayment(double amount) {
         if (amount > 0) {
             if ((this.balance - amount) < 0) {
                 System.out.println("Error: Payment amount exceeds current balance.");
             } else {
-                this.balance -= amount;
+                this.balance= amount;
                 Methods.writeToFile(accountName, "Credit", this.toString());
             }
         }
@@ -213,7 +212,7 @@ public class CreditAccount extends Account {
 
     /**
      * Charges an amount to the credit account, increasing the current balance.
-     * @param amount - The amount to be charged
+     * @param amount The amount to be charged
      */
     public void charge(double amount) {
         if (amount > 0) {
@@ -227,7 +226,7 @@ public class CreditAccount extends Account {
     }
     /**
      * Converts the credit account details to a string representation.
-     * @return String - String copy of the credit account information
+     * @return String copy of the credit account information
      */
     @Override
     public String toString() {

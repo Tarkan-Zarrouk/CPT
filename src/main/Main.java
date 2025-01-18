@@ -1,7 +1,11 @@
 package main;
 import java.util.Scanner;
 
-import main.utils.Methods;
+/**
+ * Author: Tarkan Zarrouk
+ * date: 2025/01/19
+ * Reuseable methods
+ */
 
  /**
   * Where every method for terminal based visuals will be found here.
@@ -9,7 +13,7 @@ import main.utils.Methods;
 public class Main {
     /**
      * Main method that runs the program
-     * @param args - arguments
+     * @param args arguments
      * @return void
      */
     public static void main(String[] args) {
@@ -36,11 +40,10 @@ public class Main {
     }
     /**
      * Method that calls the main method and allows the user to choose an option to navigate through the program
-     * @param choice - choice
-     * @param bankAccount - account
-     * @param savingsAccount - savings account
-     * @param input - scanner
-     * @return void
+     * @param choice Number chosen
+     * @param savingsAccount Savings account object
+     * @param chequingAccount Chequing Account Object
+     * @return void Nothing
      */
     public static void callMain(int choice, SavingsAccount savingsAccount, ChequingAccount chequingAccount, CreditAccount creditAccount, Scanner input) {
         do {
@@ -77,10 +80,9 @@ public class Main {
     }
     /**
      * Method that allows the user to navigate through the account section of the program and create, delete, and view their accounts
-     * @param input - scanner
-     * @param bankAccount - account
-     * @param savingsAccount - savings account
-     * @return void
+     * @param input Scanner input object
+     * @param savingsAccount Savings Account object
+     * @return void Nothing
      */
     public static void accountSection(Scanner input, SavingsAccount savingsAccount, CreditAccount creditAccount, ChequingAccount chequingAccount) {
         String accountChoice;
@@ -151,9 +153,9 @@ public class Main {
     }
     /**
      * Method that allows the user to navigate through the savings account section of the program and view their savings account information
-     * @param input - scanner
-     * @param savingsAccount - savings account
-     * @return void
+     * @param input Scanner input Object
+     * @param savingsAccount Savings account object
+     * @return void Nothing
      */
     public static void savingsAccountSection(Scanner input, SavingsAccount savingsAccount) {
         String savingsChoice;
@@ -194,9 +196,9 @@ public class Main {
     }
     /**
      * Method that allows the user to navigate through the savings account section of the program and view their savings account information
-     * @param input - scanner
-     * @param savingsAccount - savings account
-     * @return void
+     * @param input Scanner input object
+     * @param chequingAccount Chequing Account Object
+     * @return void Nothing
      */
     public static void chequingAccountSection(Scanner input, ChequingAccount chequingAccount) {
         String savingsChoice;
@@ -237,8 +239,8 @@ public class Main {
     }
     /**
      * Allows the user to navigate through the savings account section of the program and view their savings account information
-     * @param input - The user input
-     * @param creditAccount - Savings account object containing their info for this account
+     * @param input Scanner Input Object
+     * @param creditAccount Savings account object
      */
     public static void creditAccountSection(Scanner input, CreditAccount creditAccount) {
         String savingsChoice;

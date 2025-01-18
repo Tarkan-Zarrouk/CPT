@@ -1,5 +1,7 @@
+package main;
 import java.util.ArrayList;
-import utils.Methods;
+
+import main.utils.Methods;
 
 /**
  * author: Tarkan Zarrouk
@@ -91,7 +93,13 @@ public class Account {
     public String getAccountName() {
         return accountName;
     }
-    
+    /**
+     * Clears the Account Types ArrayList
+     * @return empty Account Types
+     */
+    public static void resetAccountTypes() {
+        accountTypes.clear();
+    }
     /**
      * Get the account name
      * @return Balance of the account
@@ -149,6 +157,6 @@ public class Account {
      */
     @Override
     public String toString() {
-        return "Account Number: " + accountNumber + "\n" + "Account Name: " + accountName + "\n" + "Balance: " + balance + "\n" + "Account Types: " + getAccountTypes();
+        return "Account Number: " + accountNumber + "\n" + "Account Name: " + accountName + "\n" + "Balance: " + balance + "\n" + "Account Types: " + accountTypes;
     }
 }

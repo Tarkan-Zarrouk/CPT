@@ -1,4 +1,6 @@
-import utils.Methods;
+package main;
+
+import main.utils.Methods;
 
 /**
  * author: Tarkan Zarrouk
@@ -87,7 +89,7 @@ public class ChequingAccount extends Account {
         this.accountNumber = accountNumber;
     }
     /**
-     * 
+     * Returns the list of all the transactions
      * @return List of the transactions in the Chequing Account 
      */
     public TransactionHistory getTransactionHistory() {

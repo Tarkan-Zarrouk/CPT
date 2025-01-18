@@ -55,6 +55,10 @@ For feature requests, bug reports, or general inquiries, please open an issue on
 
 - [GitHub Issues Page](https://github.com/Tarkan-Zarrouk/CPT/issues)
 
+## Contributions
+
+If you ever wish to implement your own changes, please follow the [Contributions](CONTRIBUTIONS.md)
+
 ## Credits
 
 - [Tarkan Zarrouk](https://www.github.com/tarkan-zarrouk)

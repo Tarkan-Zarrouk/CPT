@@ -1,10 +1,11 @@
+package main;
 // thank you for adding this java... ;3
 import java.io.*;
 import java.time.*;
 import java.time.format.*;
 import java.util.*;
 
-import utils.Methods;
+import main.utils.Methods;
 
 import java.time.temporal.*;
 
@@ -351,12 +352,18 @@ public class SavingsAccount extends Account {
                 throw new IllegalArgumentException("Please enter a specified interest period... Not: " + interestPeriod);
         }
     }
+    public String getAccountCreationDate() {
+        return accountCreationDate.format(now);
+    }
     /**
      * conversion of parent class account names, numbers, balance then the output of the interest rate, and appreciation period to a string output
      * @return - String copy of the parent class information, interest rate, and appreciation period
      */
     @Override
     public String toString() {
+        String transactionsText = (transaction != null && !transaction.getMostRecentTransaction().isEmpty()) 
+        ? transaction.toString() 
+        : "No transactions available"; 
         return super.toString() + 
         "\n" + 
         "Interest Rate: " + 
@@ -367,7 +374,8 @@ public class SavingsAccount extends Account {
         + "\n"
         + "Transactions: "
         + "\n"
-        + (transaction != null ? transaction.toString() : "No transactions") 
+        + transactionsText
+        + "\n"
         + "Account Created at: " 
         + accountCreationDate.format(now) 
         + "\n" 

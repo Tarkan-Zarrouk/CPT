@@ -1,4 +1,4 @@
-package utils;
+package main.utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -21,10 +21,10 @@ public class Methods {
      * @param directoryName - name of the directory
      * @return void
      */
-    public static void createFile(String accountName, String directoryName) {
+    public static void createFile(String fileName, String directoryName) {
         try {
             // intialize new file object
-            File file = new File(directoryName + "/" + accountName + ".txt");
+            File file = new File(directoryName + "/" + fileName + ".txt");
             // create directory 
             file.getParentFile().mkdirs();
             // once it's created, we can simply just return a message

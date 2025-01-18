@@ -1,10 +1,7 @@
+package main;
 import java.util.Scanner;
-import utils.Methods;
-/**
- * author: Tarkan Zarrouk
- * date: 2025/01/17
- * Main class where we run our program
- */
+
+import main.utils.Methods;
 
  /**
   * Where every method for terminal based visuals will be found here.

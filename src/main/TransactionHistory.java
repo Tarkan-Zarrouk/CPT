@@ -1,3 +1,4 @@
+package main;
 import java.util.Stack;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Stack;
  */
 public class TransactionHistory {
     /**
-     * A stack that stores the transaction history in Last-In-First-Out (LIFO) order.
+     * A stack that stores the transaction history
      */
     private Stack<String> transactions;
 

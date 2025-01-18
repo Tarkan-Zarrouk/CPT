@@ -1,8 +1,9 @@
+package main;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import utils.Methods;
+import main.utils.Methods;
 
 /**
  * Author: Tarkan Zarrouk
@@ -86,7 +87,7 @@ public class CreditAccount extends Account {
         }
         Methods.writeToFile(accountName, "Credit", creditAccount.toString());
         Account.addAccountTypes("Credit");
-        return "Successfully created or updated " + accountName;
+        return "Successfully created " + accountName;
     }
     /**
      * Returns the account number
@@ -235,7 +236,7 @@ public class CreditAccount extends Account {
                "\nCredit Limit: " + creditLimit + 
                "\nBalance: " + balance + 
                "\nTransactions: " + (transaction != null ? transaction.toString() : "No transactions") + 
-               "\nAccount Types: " + super.getAccountTypes();
+               "\nAccount Types: " + getAccountTypes();
     }
     
 }

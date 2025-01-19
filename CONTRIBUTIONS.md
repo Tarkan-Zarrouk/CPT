@@ -1,4 +1,3 @@
-Here is the entire `CONTRIBUTIONS.md` content in a fully copyable markdown format:
 # Contributions to BankEase
 
 Thank you for considering contributing to **BankEase**! We welcome all contributions, whether it's fixing bugs, adding new features, or improving the documentation. This outlines how you can contribute to this project.

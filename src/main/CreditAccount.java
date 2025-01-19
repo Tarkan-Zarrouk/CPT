@@ -115,7 +115,7 @@ public class CreditAccount extends Account {
      * Sets the account holder's name for this credit account
      * @param accountName The new account holder's name
      */
-    public void setaccountName(String accountName) {
+    public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
 

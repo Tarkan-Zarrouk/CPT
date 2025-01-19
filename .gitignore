@@ -1,4 +1,11 @@
 # Compiled classes
 bin
 
+# Mac
 .DS_Store
+
+# Personal Info Prevention
+Account Types
+Chequing
+Credit
+Savings

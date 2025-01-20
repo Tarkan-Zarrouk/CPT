@@ -4,7 +4,7 @@ import java.util.Scanner;
 /**
  * Author: Tarkan Zarrouk
  * date: 2025/01/19
- * Reuseable methods
+ * Terminal based application methods responsible for producing an output
  */
 
  /**

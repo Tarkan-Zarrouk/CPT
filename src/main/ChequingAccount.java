@@ -115,7 +115,7 @@ public class ChequingAccount extends Account {
     public void withdraw(String accountName, double amount) {
         if (amount > 0) {   
             // remove the amount from the balance
-            balance= amount;
+            balance -= amount;
             // rewrite file to contain updated information
             transaction.addTransaction("Withdrew: " + amount + " to Chequing Account.");
             Methods.writeToFile(accountName, "Chequing", this.toString());
